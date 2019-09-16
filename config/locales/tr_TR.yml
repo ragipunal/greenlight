@@ -198,13 +198,14 @@ tr_TR:
     designs: Özel Tasarımlar
     authentication: Kullanıcı Doğrulama
   footer:
-    powered_by: "%{href} tarafından geliştirildi."
+    powered_by: "%{href} tarafından yayına alındı."
   forgot_password:
     subtitle: Parolamı Unuttum
     email: E-posta
     submit: Gönder
   go_back: Geri git
   greenlight: LabAkademi
+  ragipunal: Ragıp Ünal
   header:
     all_recordings: Tüm Kayıtlar
     dropdown:
