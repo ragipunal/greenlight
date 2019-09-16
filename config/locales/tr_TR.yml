@@ -1,18 +1,18 @@
-  # BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+  # LabAkademi open source conferencing system - http://www.bigbluebutton.org/.
   #
-  # Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
+  # Copyright (c) 2018 LabAkademi Inc. and by respective authors (see below).
   #
   # This program is free software; you can redistribute it and/or modify it under the
   # terms of the GNU Lesser General Public License as published by the Free Software
   # Foundation; either version 3.0 of the License, or (at your option) any later
   # version.
   #
-  # BigBlueButton is distributed in the hope that it will be useful, but WITHOUT ANY
+  # LabAkademi is distributed in the hope that it will be useful, but WITHOUT ANY
   # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
   # PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
   #
   # You should have received a copy of the GNU Lesser General Public License along
-  # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+  # with LabAkademi; if not, see <http://www.gnu.org/licenses/>.
 
   # Locale.
 
@@ -43,303 +43,303 @@
           placeholder: Resim URL'si...
           title: Marka resimi
         cache:
-          info: Clears the stored provider cache which forces a new request for the updated info
-          title: Clear Provider Cache
-          button: Clear Cache
+          info: Güncellenen bilgi için yeni bir istek zorlayan depolanan önbellekleri temizler
+          title: Sağlayıcı Önbelleğini Temizle
+          button: Önbelleği Temizle
         color:
-          info: Changing the Regular Color will change both Lighten and Darken. Lighten and Darken can then be changed individually
-          title: Primary Color
-          regular: Regular
-          lighten: Lighten
-          darken: Darken
+          info: Normal rengin değişmesi hem koyu hemde açık rengi değiştirecektir. Açık ve Koyu renkleri sonra ayrı ayrı değiştirebilirsiniz.
+          title: Ana Renk
+          regular: Normal
+          lighten: Açık
+          darken: Koyu
         recording_visibility:
-          info: Set the default recording visbility for new recordings
-          title: Recording Default Visibility
-          warning: This setting will only be applied to rooms that aren't running
+          info: Yeni kayıtlar için varsayılan kayıt görünürlüğünü ayarlama
+          title: Varsayılan Görünürlük Kaydı
+          warning: Bu ayar yalnızca çalışmayan odalara uygulanır
         registration:
-          info: Change the way that users register to the website
-          title: Registration Method
+          info: Kullanıcıların web sitesine kayıt olma şeklini değiştirin
+          title: Kayıt Yöntemi
           methods:
-            approval: Approve/Decline
-            invite: Join by Invitation
-            open: Open Registration
+            approval: Onayla/Reddet
+            invite: Davetiye ile Katıl
+            open: Açık Kayıt
         rooms:
-          info: Limits the number of rooms that a user can have (including Home Room). This setting does not apply to administrators.
-          title: Number of Rooms per User
-        subtitle: Customize LabAkademi
-        title: Site Settings
+          info: Kullanıcının sahip olabileceği oda sayısını (Ev Odası dahil) sınırlar. Bu ayar yöneticiler için geçerli değildir.
+          title: Kullanıcı Başına Oda Sayısı
+        subtitle: Özelleştir LabAkademi
+        title: Site Ayarları
       flash:
-        approved: User has been successfully approved.
-        banned: User has been successfully banned.
-        unbanned: User has been successfully unbanned.
-        delete: User deleted successfully
-        delete_fail: Failed to delete user
-        demoted: User has been successfully demoted
-        invite: Invite successfully sent to %{email}
-        invite_email_verification: Emails must be enabled in order to use this method. Please contact your system administrator.
-        promoted: User has been successfully promoted
-        registration_method_updated: Registration method successfully updated
-        reset_password: The user has been sent an email to reset their password. (Please ask them to check their spam folder if they haven't received it)
-        settings: Site Settings successfully changed
-        unauthorized: You are not authorized to perform actions on this user
+        approved: Kullanıcı başarıyla onaylandı.
+        banned: Kullanıcı başarıyla yasaklandı.
+        unbanned: Kullanıcı yasağı kaldırıldı.
+        delete: Kullanıcı başarıyla silindi
+        delete_fail: Kullanıcı silinemedi
+        demoted: Kullanıcı başarıyla indirgendi
+        invite: Davet başarıyla %{email} gönderildi
+        invite_email_verification: Bu yöntemi kullanabilmek için e-postaların etkinleştirilmesi gerekir. Lütfen sistem yöneticinize başvurun.
+        promoted: Kullanıcı başarıyla terfi etti
+        registration_method_updated: Kayıt yöntemi başarıyla güncellendi
+        reset_password: Kullanıcıya şifresini sıfırlaması için bir e-posta gönderildi. (Lütfen spam klasörlerini kontrol etmelerini isteyin)
+        settings: Site Ayarları başarıyla değiştirildi
+        unauthorized: Bu kullanıcı üzerinde işlem yapma yetkiniz yok
       recordings:
-        title: Server Recordings
-        no_recordings: This server has no recordings.
+        title: Sunucu Kayıtları
+        no_recordings: Bu sunucunun kaydı yok.
       roles:
-        can_create_rooms: Can create rooms
-        delete: Delete the role
-        duplicate_name: The role name you provided was a duplicate. All role names must be unique
-        empty_name: All roles must have a non empty name
-        invalid_order: The user role must be the lowest priority role and the admin role must be the highest priority role
-        invalid_update: You can't update a role with a higher priority than your own role
-        name: Role Name
-        new_role: Create a new role
-        role_has_users: This role is assigned to %{user_count} accounts. Please remove all accounts from this role before deleting it.
-        title: Roles
-        promote_email: Send an email to users when they are assigned this role
-        demote_email: Send an email to users when they are removed from this role
-        edit_site_settings: Allow users with this role to edit site settings
-        edit_roles: Allow users with this role to edit other roles
-        manage_users: Allow users with this role to manage users
-        invalid_assignment: You can't assign a role with a higher priority than your own to a user
-        invalid_removal: You can't remove a role with a higher priority than your own
+        can_create_rooms: Odalar oluşturabilir
+        delete: Rolü sil
+        duplicate_name: Rol adı yinelendi. Tüm rol adları benzersiz olmalıdır
+        empty_name: Tüm rollerin boş olmayan bir adı olması gerekir
+        invalid_order: Kullanıcı rolü en düşük öncelikli rol olmalı ve yönetici rolü en yüksek öncelikli rol olmalıdır
+        invalid_update: Kendi rolünüzden daha yüksek önceliğe sahip bir rolü güncelleyemezsiniz
+        name: Rol ismi
+        new_role: Yeni bir rol oluştur
+        role_has_users: Bu rol %{user_count} hesaplarına atanmıştır. Lütfen silmeden önce tüm hesapları bu rolden kaldırın.
+        title: Roller
+        promote_email: Bu rol atandığında kullanıcılara bir e-posta gönder
+        demote_email: Bu rolden kaldırıldıklarında kullanıcılara bir e-posta gönder
+        edit_site_settings: Bu roldeki kullanıcıların site ayarlarını düzenlemesine izin ver
+        edit_roles: Bu roldeki kullanıcıların diğer rolleri düzenlemesine izin ver
+        manage_users: Bu roldeki kullanıcıların kullanıcıları yönetmesine izin ver
+        invalid_assignment: Bir kullanıcıya kendinizden daha yüksek önceliğe sahip bir rol atayamazsınız
+        invalid_removal: Kendinizinkinden daha yüksek önceliğe sahip bir rolü kaldıramazsınız.
         colour:
-          title: Role Colour
-          info: Set the colour that will be associated with the role
-      title: Organization Settings
+          title: Rol Rengi
+          info: Rolle ilişkilendirilecek rengi ayarlama
+      title: Organizasyon Ayarları
       users:
-        invite: Invite User
+        invite: Kullanıcı Daveti
         edit:
-          title: Edit User Details
+          title: Kullanıcı Bilgilerini Düzenle
         settings:
-          approve: Approve
-          decline: Decline
-          ban: Ban User
-          delete: Delete
-          edit: Edit
-          edit_roles: Edit the user roles
-          unban: Unban User
+          approve: Onayla
+          decline: Reddet
+          ban: Kullanıcı Banla
+          delete: Sil
+          edit: Düzenle
+          edit_roles: Kullanıcı rollerini düzenleyin
+          unban: Kullanıcı Yasağını Kaldır
         table:
           authenticator: Authenticator
-          created: Created
-          name: Name
+          created: Oluşturuldu
+          name: İsim
           not_found: No users match your search
-          no_users: No users found
-          role: Role
-          uid: User ID
-          username: Username
-        title: Manage Users
-    add_to_google_calendar: "Add to Google Calendar"
-    bigbluebutton: BigBlueButton
-    bigbluebutton_exception: Oops, there was an error when starting the meeting!
-    cancel: Cancel
+          no_users: Kullanıcı bulunamadı
+          role: Rol
+          uid: Kullanıcı kimliği
+          username: Kullanıcı Adı
+        title: Kullanıcıları Yönet
+    add_to_google_calendar: "Google Takvim’e ekle"
+    bigbluebutton: LabAkademi
+    bigbluebutton_exception: Hata! Toplantıya başlarken bir hata oluştu!
+    cancel: İptal
     cookies:
       cookie_info: Çerezler hizmetlerimizi sunmamıza yardımcı olur. Hizmetlerimizi kullanarak çerez kullanımımızı kabul etmiş olursunuz.
       cookie_button: Katılıyorum
-    copied: Copied
-    copy: Copy
+    copied: Kopyalandı
+    copy: Kopyala
     date:
-      month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-    default_admin: You are still using the default password for this account. Please click <a href="%{edit_link}">here</a> to change it
-    delete: Delete
-    delivery_error: An error occured during email delivery. Please contact an administrator!
-    docs: Documentation
-    email: Email
-    email_sent: Your %{email_type} email has been sent! (Please check your Spam folder if you haven't received it)
-    enter_your_name: Enter your name!
+      month_names: [~, Ocak, Şubat, Mart, Nisan, Mayıs, Haziran, Temmuz, Ağustos, Eylül, Ekim, Kasım, Aralık]
+    default_admin: Hala bu hesap için varsayılan şifreyi kullanıyorsunuz. Lütfen değiştirmek için <a href="%{edit_link}"> burayı </a> tıklayın
+    delete: Sil
+    delivery_error: E-posta gönderimi sırasında bir hata oluştu. Lütfen bir yöneticiye başvurun!
+    docs: Dökümantasyon
+    email: E-posta
+    email_sent: %{email_type} e-postanız gönderildi! (Eğer almadıysanız, lütfen Spam klasörünüzü kontrol edin)
+    enter_your_name: Adınızı giriniz!
     errors:
       bigbluebutton:
-        help: Please make sure the proper steps have been taken. <a href="%{doc_link}">Learn more</a>
-        message: Invalid BigBlueButton Endpoint and Secret
-        title: Server Error
+        help: Lütfen uygun adımların atıldığından emin olun. <a href="%{doc_link}"> Daha fazla bilgi edinin </a>
+        message: Geçersiz LabAkademi Endpoint and Secret
+        title: Sunucu Hatası
       internal:
-        message: Looks like something went wrong on our end.
-        help: The error has been logged, we'll take a look!
+        message: Sonunda bir şeyler ters gitti gibi görünüyor.
+        help: Hata kaydedildi, bir göz atacağız!
       maintenance:
-        message: Sorry, we're down for maintenance.
-        help: We'll be back soon!
+        message: Üzgünüz, bakım için kapalıyız.
+        help: Yakında döneceğiz!
       migration_error:
-        contact_admin: If you are not an administrator, please contact one.
-        continue: I'd like to stay using 1.0.
+        contact_admin: Yönetici değilseniz, lütfen bir tanesine başvurun.
+        continue: 1.0 kullanarak kalmak istiyorum.
         notice: >
-          LabAkademi encountered a database migration error.<br>
-          This may be because you haven't updated to LabAkademi 2.0.
-        upgrade: Show me how to upgrade to 2.0!
-        version: We've released a new version of LabAkademi, but your database isn't compatible.
+          LabAkademi bir veritabanı geçiş hatasıyla karşılaştı. <br>
+          Bunun sebebi LabAkademi 2.0'da güncellemediğiniz olabilir.
+        upgrade: 2.0'a nasıl yükselteceğimi göster!
+        version: LabAkademi'nin yeni bir sürümünü yayınladık, ancak veritabanınız uyumlu değil.
       messages:
-        blank: can't be blank
-        too_short: is too short
-        invalid: is invalid
-        taken: has already been taken
-        accepted: must be accepted
-        confirmation: doesn't match %{attribute}
-        inclusion: is not included in the list
+        blank: boş olamaz
+        too_short: çok kısa
+        invalid: geçersizdir
+        taken: çoktan alındı
+        accepted: kabul edilmeli
+        confirmation: eşleşmiyor %{attribute}
+        inclusion: listeye dahil edilmedi
       no_provider:
-        message: The site you are trying to access is not enabled
-        help: Please contact your system administrator to setup LabAkademi
+        message: Erişmeye çalıştığınız site etkin değil
+        help: LabAkademi'yi ayarlamak için lütfen sistem yöneticinize başvurun.
       not_found:
-        message: Sorry! The page you are looking for does not exist.
-        help: Is it possible its been removed?
+        message: Üzgünüm! Aradığınız sayfa mevcut değil.
+        help: Kaldırılması mümkün mü?
         user_not_found:
-          help: Please contact an administrator.
-          message: Sorry, this user is not registered.
+          help: Lütfen bir yöneticiye başvurun.
+          message: Üzgünüz, bu kullanıcı kayıtlı değil.
         user_missing:
-          help: Please verify the URL and try again
-          message: The URL that you have entered is not valid.
-      title: Errors
+          help: Lütfen URL’yi doğrulayın ve tekrar deneyin
+          message: Girdiğiniz URL geçerli değil.
+      title: Hatalar
       unauthorized:
-        message: You do not have access to this application
-        help: If you believe this is a mistake, please contact your system administrator.
-    expired_reset_token: Password reset link has expired!
+        message: Bu uygulamaya erişiminiz yok
+        help: Bunun bir hata olduğunu düşünüyorsanız, lütfen sistem yöneticinize başvurun.
+    expired_reset_token: Şifre sıfırlama bağlantısının süresi doldu!
     features:
-      title: Features
-      rooms: Personalized Rooms
-      recordings: Recording Management
-      designs: Custom Designs
-      authentication: User Authentication
+      title: Özellikleri
+      rooms: Kişiselleştirilmiş Odalar
+      recordings: Kayıt Yönetimi
+      designs: Özel Tasarımlar
+      authentication: Kullanıcı Doğrulama
     footer:
-      powered_by: Powered by %{href}.
+      powered_by: "%{href} tarafından geliştirildi."
     forgot_password:
-      subtitle: Forgot Password
-      email: Email
-      submit: Submit
-    go_back: Go back
+      subtitle: Parolamı Unuttum
+      email: E-posta
+      submit: Gönder
+    go_back: Geri git
     greenlight: LabAkademi
     header:
-      all_recordings: All Recordings
+      all_recordings: Tüm Kayıtlar
       dropdown:
-        account_settings: Organization
-        help: Need help?
-        home: Home
-        settings: Profile
-        signout: Sign out
-    home_room: Home Room
-    info_update_success: Information successfully updated.
-    invalid_credentials: The email and password you entered did not match our records. Try again or click Forgot Password to reset your password.
-    invalid_login_method: Login failed due to account mismatch. You need to log in with omniauth.
-    invite_message: "To invite someone to the meeting, send them this link:"
+        account_settings: Organizasyon
+        help: Yardıma mı ihtiyacınız var?
+        home: Anasayfa
+        settings: Profil
+        signout: Oturumu Kapat
+    home_room: Ana Oda
+    info_update_success: Bilgi başarıyla güncellendi.
+    invalid_credentials: Girdiğiniz e-posta ve şifre kayıtlarımızla eşleşmedi. Parolanızı sıfırlamak için tekrar deneyin veya Parolanızı mı unuttunuz
+    invalid_login_method: Hesap uyuşmazlığı nedeniyle giriş başarısız oldu. Omniauth ile giriş yapmalısınız.
+    invite_message: "Birini toplantıya davet etmek için onlara bu bağlantıyı gönderin:"
     javascript:
       room:
         mailer:
-          subject: 'has invited you to view a recording.'
-          body: 'To view the recording, follow the link below:'
-          autogenerated: 'This e-mail is auto-generated by BigBlueButton.'
-          footer: 'BigBlueButton is an open source web conferencing system. For more information on BigBlueButton, see https://bigbluebutton.org/.'
+          subject: 'sizi bir kaydı görüntülemeye davet etti.'
+          body: 'Kaydı görüntülemek için aşağıdaki bağlantıyı izleyin:'
+          autogenerated: 'Bu e-posta LabAkademi tarafından otomatik olarak oluşturulmuştur.'
+          footer: 'LabAkademi açık kaynaklı bir web konferans sistemidir. LabAkademi hakkında daha fazla bilgi için, see https://labakademi.com/.'
     landing:
       about: "LabAkademi web konferans sistemidir."
       welcome: LabAkademi Webinara Hoşgeldiniz.
-      video: Watch our tutorial on using LabAkademi
-      upgrade: Show me how to upgrade to 2.0!
-      version: We've released a new version of LabAkademi, but your database isn't compatible.
-    language_default: Default (browser language)
-    ldap_error: Unable to connect to the LDAP server. Please check your LDAP configuration in the env file and ensure your server is running.
+      video: LabAkademi'yi kullanma hakkındaki eğitimi izleyin
+      upgrade: 2.0'a nasıl yükselteceğimi göster!
+      version: LabAkademi'nin yeni bir sürümünü yayınladık, ancak veritabanınız uyumlu değil.
+    language_default: Varsayılan (tarayıcı dili)
+    ldap_error: LDAP sunucusuna bağlanılamıyor. Lütfen env dosyasındaki LDAP yapılandırmanızı kontrol edin ve sunucunuzun çalıştığından emin olun.
     login: Oturum aç
     login_title: Hesabınıza giriş yapın
     mailer:
       user:
         approve:
-          info: Your account has been approved.
-          signin: To access your personal rooms, click the button below and sign in.
+          info: Hesabınız onaylandı.
+          signin: Kişisel odalarınıza erişmek için aşağıdaki butona tıklayın ve giriş yapın.
           signin_link: Oturum Aç
           signup:
-            info: A new user has signed up to use LabAkademi.
-            more-info: To allow this user to access LabAkademi you must approve their account in organization settings.
-            admins_link: Visit the Organization Page
-            subject: New LabAkademi User Sign Up
-            username: The user signed up with the name %{name} and the email %{email}.
-          subject: Account Approved
-          username: Your username is %{email}.
+            info: LabAkademi'yi kullanmak için yeni bir kullanıcı kayıt oldu.
+            more-info: Bu kullanıcının LabAkademi'ye erişmesine izin vermek için hesaplarını kuruluş ayarlarında onaylamanız gerekir.
+            admins_link: Organizasyon Sayfasını Ziyaret Edin
+            subject: Yeni LabAkademi Kullanıcı Kayıt Ol
+            username: Kullanıcı %{name} adı ve %{email} e-postası ile üye oldu.
+          subject: Hesap Onaylandı
+          username: Kullanıcı adınız %{email}.
         demoted:
-          info: You are no longer an %{role} on %{url}.
-          more-info: You now have the same privileges as a regular user.
+          info: Artık %{url} adresinde %{role} değilsiniz.
+          more-info: Artık normal bir kullanıcıyla aynı ayrıcalıklara sahipsiniz.
           root_link: Oturum Aç
-          subtitle: "%{role} Rights Rescinded"
+          subtitle: "%{role} İptal Edilen Haklar"
         invite:
-          info: You have been invited to your own personal space by %{name}
-          signup_info: To signup using your email, click the button below and follow the steps.
+          info: "%{name} ile kendi kişisel alanınıza davet edildiniz."
+          signup_info: E-postanızı kullanarak kaydolmak için aşağıdaki düğmeyi tıklayın ve adımları izleyin.
           signup_link: Kaydol
           signup:
-            info: A user that was invited has signed up to use LabAkademi.
-            admins_link: Visit the Organization Page
-            subject: New LabAkademi User Sign Up
-            username: The user signed up with the name %{name} and the email %{email}.
-          subject: Invitation to join BigBlueButton
-          username: Your username is %{email}.
+            info: Davet edilen bir kullanıcı LabAkademi'yi kullanmak için kaydoldu.
+            admins_link: Organizasyon Sayfasını Ziyaret Edin
+            subject: Yeni LabAkademi Kullanıcı Kayıt Ol
+            username: Kullanıcı %{name} adı ve %{email} e-postası ile üye oldu.
+          subject: LabAkademi'ye katılma davetiyesi
+          username: Kullanıcı adın %{email}.
         password_reset:
-          title: 'Password reset'
-          welcome: A password reset has been requested for the email <b>%{email}</b>
-          message: 'If you requested this reset, then please click the link below to reset your password:'
-          reset_link: Reset Password
-          expire: This link will expire in two hours.
-          ignore: You can safely ignore this email if you did not make this request.
+          title: 'Parola sıfırlama'
+          welcome: <b>%{email}</b> e-postası için şifre sıfırlama istendi
+          message: 'Bu sıfırlamayı talep ettiyseniz, şifrenizi sıfırlamak için lütfen aşağıdaki bağlantıyı tıklayın:'
+          reset_link: Şifreyi yenile
+          expire: Bu bağlantı iki saat içinde sona erecek.
+          ignore: Bu isteği yapmadıysanız, bu e-postayı güvenle yok sayabilirsiniz.
         promoted:
-          admins_link: Visit the Organization Page
-          info: You are now an %{role} on %{url}.
-          more-info: To view your new abilities please visit %{url}.
-          subtitle: "%{role} Rights Granted"
+          admins_link: Organizasyon Sayfasını Ziyaret Edin
+          info: Artık %{url} tarihinde bir %{role} konum.
+          more-info: Yeni yeteneklerinizi görmek için lütfen adresini ziyaret edin %{url}.
+          subtitle: "%{role} Verilen Haklar"
         verify_email:
-          welcome: Welcome to your personal space, %{name}!
-          success: Leveraging %{bigbluebutton}, you can create your own rooms to host sessions and collaborate with others.
-          username: Your username is %{email}.
-          verify: To verify your account, just click the button below.
-          verify_text: 'To verify your account, just follow this link: %{url}'
-          verify_link: Verify Account
-          thanks: Thanks for joining and have a great day!
+          welcome: Kişisel alanınıza hoş geldiniz, %{name}!
+          success: "%{bigbluebutton} değerinden yararlanarak, oturumlara ev sahipliği yapmak ve başkalarıyla işbirliği yapmak için kendi odalarınızı oluşturabilirsiniz."
+          username: Kullanıcı adınız %{email}.
+          verify: Hesabınızı doğrulamak için aşağıdaki butona tıklamanız yeterli.
+          verify_text: 'Hesabınızı doğrulamak için bu bağlantıyı takip etmeniz yeterli: %{url}'
+          verify_link: Hesabı Doğrula
+          thanks: Katıldığınız için teşekkür ederiz ve iyi günler!
     maintenance:
-      window_alert: Maintenance window scheduled for %{date}
-    max_concurrent: The maximum number of concurrent sessions allowed has been reached!
+      window_alert: "%{date} için planlanan bakım penceresi"
+    max_concurrent: İzin verilen maksimum eşzamanlı oturum sayısına ulaşıldı!
     modal:
       create_role:
-        create: Create a new Role
-        footer_text: You can edit the individual permissions for this role after you've created it
-        name_placeholder: Enter a role name...
-        not_blank: Role name cannot be blank.
-        title: Create New Role
+        create: Yeni Bir Rol Oluştur
+        footer_text: Bu rolün bireysel izinlerini oluşturduktan sonra düzenleyebilirsiniz.
+        name_placeholder: Bir rol adı girin...
+        not_blank: Rol adı boş bırakılamaz.
+        title: Yeni Rol Oluştur
       create_room:
-        access_code: Access Code
-        access_code_placeholder: Generate an optional room access code
-        auto_join: Automatically join me into the room
-        create: Create Room
-        free_delete: You will be free to delete this room at any time.
-        name_placeholder: Enter a room name...
-        not_blank: Room name cannot be blank.
-        title: Create New Room
+        access_code: Giriş Kodu
+        access_code_placeholder: İsteğe bağlı oda erişim kodu oluşturun
+        auto_join: Otomatik olarak odaya katıl
+        create: Oda Oluştur
+        free_delete: Bu odayı istediğiniz zaman silmekte özgür olacaksınız.
+        name_placeholder: Bir oda adı girin...
+        not_blank: Oda adı boş bırakılamaz.
+        title: Yeni Oda Oluştur
       delete_account:
-        confirm: Are you sure you want to delete this account?
-        delete: I'm sure, delete this account.
-        keep: Actually, I'll keep it.
-        warning: This decision is final. You will <b>not</b> be able to recover associated data.
+        confirm: Bu hesabı silmek istediğinize emin misiniz?
+        delete: Eminim bu hesabı sil.
+        keep: Aslında ben tutacağım.
+        warning: Bu karar kesindir. İlişkili verileri <b>kurtaramazsınız</b>.
       delete_room:
-        confirm: Are you sure you want to delete %{room}?
-        delete: I'm sure, delete this room.
-        keep: On second thought, I'll keep it.
-        warning: You will <b>not</b> be able to recover this room
-        recording_warning: or any of its %{recordings_num} associated recordings.
+        confirm: "%{room} silmek istediğinden emin misin?"
+        delete: Eminim, bu odayı silin.
+        keep: İkinci düşüncede, ben tutacağım.
+        warning: Bu odayı <b>kurtaramazsın</b>
+        recording_warning: veya %{recordings_num} ile ilişkili kayıtlardan herhangi biri.
       invite_user:
-        email_placeholder: Enter the user's email
-        footer: The user will receive an email with instructions on how to sign up
-        send: Send Invite
-        title: Invite User
+        email_placeholder: Kullanıcının e-postasını girin
+        footer: Kullanıcı nasıl kayıt olunacağına dair talimatları içeren bir e-posta alacak
+        send: Davetiye Gönder
+        title: Kullanıcıyı Davet Et
       login:
-        or: or
-        with: Sign in with %{provider}
-        forgot_password: Forgot Password?
+        or: veya
+        with: Şununla giriş yap %{provider}
+        forgot_password: Parolanızı mı unuttunuz?
       rename_recording:
       room_settings:
-        title: Room Settings
-        update: Update Room
-        client: Select client type
-        join_moderator: All users join as moderators
-        mute: Mute users when they join
-        require_approval: Require moderator approval before joining
-        start: Allow any user to start this meeting
-        footer_text: Adjustment to your room can be done at anytime.
+        title: Oda Ayarları
+        update: Oda Güncelleme
+        client: Kullanıcı türünü seçin
+        join_moderator: Tüm kullanıcılar moderatör olarak katılır
+        mute: Katıldıklarında kullanıcıları sustur
+        require_approval: Katılmadan önce moderatör onayı iste
+        start: Herhangi bir kullanıcının bu toplantıyı başlatmasına izin ver
+        footer_text: Odanıza ayarlamalar istediğiniz zaman yapılabilir.
       rename_room:
-        name_placeholder: Enter a new room name...
-    name_update_success: Room name successfully changed!
-    no_user_email_exists: There is no existing user with the email specified. Please make sure you typed it correctly.
-    omniauth_error: An error occured while authenticating with omniauth. Please try again or contact an administrator!
-    omniauth_specific_error: "%{error} occured while authenticating with omniauth. Please try again or contact an administrator!"
+        name_placeholder: Yeni bir oda adı girin...
+    name_update_success: Oda adı başarıyla değiştirildi!
+    no_user_email_exists: Belirtilen e-postaya sahip mevcut bir kullanıcı yok. Lütfen doğru yazdığınızdan emin olun.
+    omniauth_error: Omniauth ile kimlik doğrulaması yapılırken bir hata oluştu. Lütfen tekrar deneyin veya bir yöneticiye başvurun!
+    omniauth_specific_error: "%{error} omniauth ile kimlik doğrulaması yapılırken ortaya çıktı. Lütfen tekrar deneyin veya bir yöneticiye başvurun!"
     pagy:
       nav:
         prev: "&lsaquo; Önceki"
