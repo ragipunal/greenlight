@@ -163,7 +163,7 @@ tr_TR:
       continue: 1.0 kullanarak kalmak istiyorum.
       notice: >
         LabAkademi bir veritabanı geçiş hatasıyla karşılaştı. <br>
-        Bunun sebebi LabAkademi 2.0'da güncellemediğiniz olabilir.
+        Bunun sebebi LabAkademi 2.0'da güncellemediğiniz olabilir.
       upgrade: 2.0'a nasıl yükselteceğimi göster!
       version: LabAkademi'nin yeni bir sürümünü yayınladık, ancak veritabanınız uyumlu değil.
     messages:
