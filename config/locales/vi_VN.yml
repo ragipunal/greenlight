@@ -31,7 +31,7 @@ vi_VN:
       color:
         info: Thay đổi màu chủ đạo được sử dụng trên trang web
         title: Màu chủ đạo
-      subtitle: Thiết lập Greenlight
+      subtitle: Thiết lập Lab Akademi
       title: Cài đặt trang
     flash:
       banned: Người dùng đã bị cấm thành công.
@@ -86,9 +86,9 @@ vi_VN:
       contact_admin: "Nếu bạn không phải là quản trị viên, xin vui lòng liên hệ với người quản lý."
       continue: Tôi muốn tiếp tục sử dụng 1.0.
       notice: >
-        Greenlight gặp lỗi di chuyển cơ sở dữ liệu.<br>Điều này có thể là do bạn chưa cập nhật lên Greenlight 2.0.
+        Lab Akademi gặp lỗi di chuyển cơ sở dữ liệu.<br>Điều này có thể là do bạn chưa cập nhật lên Lab Akademi 2.0.
       upgrade: Hãy chỉ cho tôi cách nâng cấp lên 2.0!
-      version: "Chúng tôi đã phát hành phiên bản mới của Greenlight, nhưng cơ sở dữ liệu của bạn không tương thích."
+      version: "Chúng tôi đã phát hành phiên bản mới của Lab Akademi, nhưng cơ sở dữ liệu của bạn không tương thích."
     messages:
       blank: Không thể để trống
       too_short: quá ngắn
@@ -121,7 +121,7 @@ vi_VN:
     email: Email
     submit: Gửi
   go_back: Quay lại
-  greenlight: Greenlight
+  greenlight: Lab Akademi
   header:
     all_recordings: Tất cả bản ghi hình
     dropdown:
@@ -148,7 +148,7 @@ vi_VN:
     welcome: Chào mừng đến với LiveRoom
     video: Xem thêm hướng dẫn sử dụng LiveRoom
     upgrade: Hãy chỉ cho tôi cách nâng cấp lên 2.0!
-    version: "Chúng tôi đã phát hành phiên bản mới của Greenlight, nhưng cơ sở dữ liệu của bạn không tương thích."
+    version: "Chúng tôi đã phát hành phiên bản mới của Lab Akademi, nhưng cơ sở dữ liệu của bạn không tương thích."
   language_default: Mặc định (ngôn ngữ từ trình duyệt)
   ldap_error: Không thể kết nối với máy chủ LDAP. Vui lòng kiểm tra cấu hình LDAP của bạn trong tệp env và đảm bảo máy chủ của bạn đang hoạt động.
   login: Đăng nhập

@@ -28,7 +28,7 @@ hu_HU:
         enabled: Bekapcsolva
         info: Csak hitelesített felhasználók léphetnek be a szobába
         title: Hitelesítés megkövetelése a szobákhoz
-        user-info: Ebbe a szobába a belépéshez a Greenlight-ba be kell jelentkezned
+        user-info: Ebbe a szobába a belépéshez a Lab Akademi-ba be kell jelentkezned
       branding:
         change: Kép cseréje
         info: A bal felső sarokban megjelenő arculati kép cseréje
@@ -47,7 +47,7 @@ hu_HU:
           approval: Jóváhagy/Elutasít
           invite: Belépés meghívásra
           open: Regisztráció megnyitása
-      subtitle: Greenlight személy szabása
+      subtitle: Lab Akademi személy szabása
       title: Weboldal beállításai
     flash:
       approved: A felhasználót sikeresen jóváhagytad.
@@ -112,9 +112,9 @@ hu_HU:
       contact_admin: "Te nem vagy üzemeltető, keress egyet."
       continue: Inkább maradnék az 1.0-ás használatánál.
       notice: >
-        Greenlight adatbázis-migrációs hiba. <br>Ellenőrizd, frissítetted-e a Greenlight 2.0-ás verziójára.
+        Lab Akademi adatbázis-migrációs hiba. <br>Ellenőrizd, frissítetted-e a Lab Akademi 2.0-ás verziójára.
       upgrade: "Mutasd, hogyan tudok frissíteni a 2.0-ás verzióra!"
-      version: "A Greenlight új verziója jelent meg, de az adatbázisod nem kompatibilis."
+      version: "A Lab Akademi új verziója jelent meg, de az adatbázisod nem kompatibilis."
     messages:
       blank: nem lehet üres
       too_short: túl rövid
@@ -147,7 +147,7 @@ hu_HU:
     email: E-mail
     submit: Jóváhagyás
   go_back: Vissza
-  greenlight: Greenlight
+  greenlight: Lab Akademi
   header:
     all_recordings: Összes felvétel
     dropdown:
@@ -172,9 +172,9 @@ hu_HU:
   landing:
     about: "%{href}egy egyszerű front-end a nyílt forráskódú BigBlueButton webkonferencia-rendszerhez. Saját magadnak szobákat hozhatsz létre, illetve mások csatlakozhatnak egy rövid link használatával."
     welcome: A BigBlueButton üdvözöl.
-    video: Nézd meg az ismertetőnket a  Greenlight használatáról
+    video: Nézd meg az ismertetőnket a  Lab Akademi használatáról
     upgrade: "Mutasd, hogyan tudok frissíteni a 2.0-ás verzióra!"
-    version: "A Greenlight új verziója jelent meg, de az adatbázisod nem kompatibilis."
+    version: "A Lab Akademi új verziója jelent meg, de az adatbázisod nem kompatibilis."
   language_default: Alapértelmezett (a böngésző nyelve)
   ldap_error: "Nem sikerült csatlakozni az LDAP szerverhez. Kérjük, ellenőrizd a beállításokat a környezeti, env fájlban, illetve azt, hogy a szerver működik és elérhető."
   login: Bejelentkezés
@@ -186,10 +186,10 @@ hu_HU:
         signin: A személyre szabott szoba eléréséhez kattints az alábbi gombra és jelentkezz be.
         signin_link: Bejelentkezés
         signup:
-          info: "Egy új felhasználó regisztrált, hogy használhassa a Greenlight-ot."
-          more-info: "Ahhoz, hogy ez a felhasználó elérhesse a Greenlight-ot, a szervezheti beállításokban hozzá kell rendelned."
+          info: "Egy új felhasználó regisztrált, hogy használhassa a Lab Akademi-ot."
+          more-info: "Ahhoz, hogy ez a felhasználó elérhesse a Lab Akademi-ot, a szervezheti beállításokban hozzá kell rendelned."
           admins_link: A Szervezeti oldal megtekintése
-          subject: Új Greenlight felhasználó regisztrált
+          subject: Új Lab Akademi felhasználó regisztrált
           username: "A felhasználó %{name} felhasználónévvel, %{email} e-mail címmel regisztrált."
         subject: Jóváhagyott fiók
         username: "A felhasználóneved %{email}."
@@ -203,9 +203,9 @@ hu_HU:
         signup: To signup using your email, click the button below and follow the steps.
         signup_link: Regisztráció
         signup:
-          info: "Egy meghívott felhasználó regisztrált, hogy használhassa a Greenlight-ot."
+          info: "Egy meghívott felhasználó regisztrált, hogy használhassa a Lab Akademi-ot."
           admins_link: A Szervezeti oldal megtekintése
-          subject: Új Greenlight felhasználó regisztrált
+          subject: Új Lab Akademi felhasználó regisztrált
           username: "A felhasználó %{name} felhasználónévvel, %{email} e-mail címmel regisztrált."
         subject: Meghívás a BigBlueButton használatára
         username: "A felhasználóneved %{email}."

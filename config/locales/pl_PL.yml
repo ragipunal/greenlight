@@ -36,7 +36,7 @@ pl_PL:
         enabled: Włączone
         info: Pozwól tylko uwierzytelnionym użytkownikom dołączyć do pokoju
         title: Wymagaj uwierzytelnienia dla pokoi
-        user-info: "Aby dołączyć do tego pokoju, musisz się zalogować do Greenlight"
+        user-info: "Aby dołączyć do tego pokoju, musisz się zalogować do Lab Akademi"
       branding:
         change: Zmień obraz
         info: "Zmień logo, które pojawia się w lewym górnym rogu"
@@ -58,7 +58,7 @@ pl_PL:
       rooms:
         info: "Ogranicz liczbę pokoi, które może posiadać użytkownik (w tym pokój domowy). To ustawienie nie dotyczy administratorów."
         title: Liczba pokoi na użytkownika
-      subtitle: Dostosuj Greenlight
+      subtitle: Dostosuj Lab Akademi
       title: Ustawienia Strony
     flash:
       approved: Użytkownik został pomyślnie zatwierdzony.
@@ -125,9 +125,9 @@ pl_PL:
       contact_admin: "Jeżeli nie jesteś administratorem, proszę się z nim skontaktuj."
       continue: Chciałbym nadal używać wersji 1.0.
       notice: >
-        Greenlight napotkał błąd migracji bazy danych. <br> Może to być spowodowane brakiem aktualizacji do Greenlight 2.0.
+        Lab Akademi napotkał błąd migracji bazy danych. <br> Może to być spowodowane brakiem aktualizacji do Lab Akademi 2.0.
       upgrade: "Pokaż, jak uaktualnić do wersji 2.0!"
-      version: "Wydaliśmy nową wersję Greenlight, ale twoja baza danych nie jest kompatybilna."
+      version: "Wydaliśmy nową wersję Lab Akademi, ale twoja baza danych nie jest kompatybilna."
     messages:
       blank: nie może być puste
       too_short: jest za krótkie
@@ -163,7 +163,7 @@ pl_PL:
     email: Email
     submit: Prześlij
   go_back: Wróć
-  greenlight: Greenlight
+  greenlight: Lab Akademi
   header:
     all_recordings: Wszystkie nagrania
     dropdown:
@@ -188,9 +188,9 @@ pl_PL:
   landing:
     about: "%{href} to prosty front-end dla twojego serwera konferencji internetowych typu open-source. Możesz tworzyć własne pokoje do prowadzenia sesji lub dołączać do innych za pomocą krótkiego i wygodnego łącza."
     welcome: Witamy w BigBlueButton.
-    video: Obejrzyj nasz samouczek na temat korzystania z Greenlight
+    video: Obejrzyj nasz samouczek na temat korzystania z Lab Akademi
     upgrade: "Pokaż, jak uaktualnić do wersji 2.0!"
-    version: "Wydaliśmy nową wersję Greenlight, ale twoja baza danych nie jest kompatybilna."
+    version: "Wydaliśmy nową wersję Lab Akademi, ale twoja baza danych nie jest kompatybilna."
   language_default: Domyślny (język przeglądarki)
   ldap_error: "Nie można połączyć się z serwerem LDAP. Sprawdź konfigurację LDAP w pliku env i upewnij się, że serwer działa."
   login: Zaloguj
@@ -202,10 +202,10 @@ pl_PL:
         signin: "Aby uzyskać dostęp do pokoi osobistych, kliknij poniższy przycisk i zaloguj się."
         signin_link: Zaloguj
         signup:
-          info: Nowy użytkownik zapisał się do korzystania z Greenlight.
-          more-info: "Aby umożliwić temu użytkownikowi dostęp do Greenlight, musisz zatwierdzić jego konto w ustawieniach organizacji."
+          info: Nowy użytkownik zapisał się do korzystania z Lab Akademi.
+          more-info: "Aby umożliwić temu użytkownikowi dostęp do Lab Akademi, musisz zatwierdzić jego konto w ustawieniach organizacji."
           admins_link: Odwiedź stronę organizacji
-          subject: Nowy użytkownik Greenlight (Zapis)
+          subject: Nowy użytkownik Lab Akademi (Zapis)
           username: "Zapisał się nowy użytkownik o nazwie %{name} i adresie email %{email}."
         subject: Konto zatwierdzone
         username: "Twoja nazwa użytkownika to %{email}."
@@ -219,9 +219,9 @@ pl_PL:
         signup_info: "Aby zarejestrować się za pomocą swojego e-maila, kliknij przycisk poniżej i postępuj zgodnie z instrukcjami."
         signup_link: Zapisz się
         signup:
-          info: "Użytkownik, który został zaproszony, zapisał się do korzystania z Greenlight."
+          info: "Użytkownik, który został zaproszony, zapisał się do korzystania z Lab Akademi."
           admins_link: Odwiedź stronę organizacji
-          subject: Nowy użytkownik Greenlight (Zapis)
+          subject: Nowy użytkownik Lab Akademi (Zapis)
           username: "Zapisał się nowy użytkownik o nazwie %{name} i adresie email %{email}."
         subject: Zaproszenie do korzystania z systemu wideokonferencji.
         username: "Twoja nazwa użytkownika to %{email}."
