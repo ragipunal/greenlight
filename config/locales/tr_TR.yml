@@ -407,15 +407,15 @@ tr_TR:
     pending: Bekleyen
     user: Kullanıcı
   room:
-    access_code_required: Please enter a valid access code to join the room
-    create_room: Create a Room
-    create_room_error: There was an error creating the room
-    create_room_success: Room created successfully
-    enter_the_access_code: Enter the room's access code
-    invited: You have been invited to join
-    invite_participants: Invite Participants
-    join: Join
-    last_session: Last session on %{session}
+    access_code_required: Lütfen odaya katılmak için geçerli bir erişim kodu girin
+    create_room: Oda Oluştur
+    create_room_error: Oda oluşturulurken bir hata oluştu
+    create_room_success: Oda başarıyla oluşturuldu
+    enter_the_access_code: Odanın erişim kodunu girin
+    invited: Katılmaya davet edildiniz
+    invite_participants: Katılımcıları Davet Et
+    join: Katıl
+    last_session: Son oturum %{session}
     login: Giriş
     owner: Sahip
     no_room:
