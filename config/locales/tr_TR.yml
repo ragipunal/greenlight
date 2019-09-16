@@ -145,7 +145,7 @@
     delivery_error: E-posta gönderimi sırasında bir hata oluştu. Lütfen bir yöneticiye başvurun!
     docs: Dökümantasyon
     email: E-posta
-    email_sent: %{email_type} e-postanız gönderildi! (Eğer almadıysanız, lütfen Spam klasörünüzü kontrol edin)
+    email_sent: "%{email_type} e-postanız gönderildi! (Eğer almadıysanız, lütfen Spam klasörünüzü kontrol edin)"
     enter_your_name: Adınızı giriniz!
     errors:
       bigbluebutton:
