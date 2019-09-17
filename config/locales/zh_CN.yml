@@ -1,18 +1,18 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Lab Akademi open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2018 Lab Akademi Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
 # Foundation; either version 3.0 of the License, or (at your option) any later
 # version.
 #
-# BigBlueButton is distributed in the hope that it will be useful, but WITHOUT ANY
+# Lab Akademi is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
 #
 # You should have received a copy of the GNU Lesser General Public License along
-# with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+# with Lab Akademi; if not, see <http://www.gnu.org/licenses/>.
 
 # Locale.
 
@@ -130,7 +130,7 @@ zh_CN:
         username: 用户名
       title: 管理用户
   add_to_google_calendar: "添加到谷歌日历"
-  bigbluebutton: BigBlueButton
+  bigbluebutton: Lab Akademi
   bigbluebutton_exception: 哎呀，启动会议出错！
   cancel: 取消
   cookies:
@@ -262,7 +262,7 @@ zh_CN:
           admins_link: 访问网站管理页面
           subject: 新Greenlight用户注册
           username: "用户注册了名称%{name} 和电子邮箱 %{email}."
-        subject: 邀请加入 BigBlueButton
+        subject: 邀请加入 Lab Akademi
         username: "您的用户名是 %{email}."
       password_reset:
         title: '重置密码'

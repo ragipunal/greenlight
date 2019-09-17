@@ -1,18 +1,18 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Lab Akademi open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2018 Lab Akademi Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
 # Foundation; either version 3.0 of the License, or (at your option) any later
 # version.
 #
-# BigBlueButton is distributed in the hope that it will be useful, but WITHOUT ANY
+# Lab Akademi is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
 #
 # You should have received a copy of the GNU Lesser General Public License along
-# with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+# with Lab Akademi; if not, see <http://www.gnu.org/licenses/>.
 
 # Locale.
 
@@ -21,7 +21,7 @@ ru_RU:
     attributes:
       user:
         accepted_terms: "Условия и положения."
-  bigbluebutton: BigBlueButton
+  bigbluebutton: Lab Akademi
   bigbluebutton_exception: "Упс, при запуске мероприятия произошла ошибка!"
   cancel: Отмена
   cookies:
@@ -80,8 +80,8 @@ ru_RU:
   invalid_login_method: Не удалось войти из-за несоответствия аккаунта. Вам необходимо выполнить вход с использованием omniauth.
   invite_message: "Для приглашения на встречу отправьте следующую ссылку:"
   landing:
-    about: "%{href} это простой внешний интерфейс для Вашего сервера вебконференций с открытым кодом BigBlueButton. Вы можете создавать собственные комнаты для встреч или присоединяться к комнатам созданным другими пользователями используя короткую и удобную ссылку."
-    welcome: Добро пожаловать в BigBlueButton
+    about: "%{href} это простой внешний интерфейс для Вашего сервера вебконференций с открытым кодом Lab Akademi. Вы можете создавать собственные комнаты для встреч или присоединяться к комнатам созданным другими пользователями используя короткую и удобную ссылку."
+    welcome: Добро пожаловать в Lab Akademi
     video: Посмотрите наше руководство по использованию Lab Akademi
     upgrade: Показать мне как обновиться до версии 2.0!
     version: "Мы выпустили новую версию Lab Akademi, но Ваша база данных несовместима с ней."
