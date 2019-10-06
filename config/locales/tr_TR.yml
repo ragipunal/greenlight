@@ -228,7 +228,7 @@ tr_TR:
         footer: 'Lab Akademi açık kaynaklı bir web konferans sistemidir. Lab Akademi hakkında daha fazla bilgi için, see https://labakademi.com/.'
   landing:
     about: "Lab Akademi web konferans sistemidir."
-    welcome: Lab Akademi Webinara Hoşgeldiniz.
+    welcome: Lab Akademi Webinar  sistemi profesyonel gelişiminizi desteklemeyi amaçlar. Webinar sistemimiz sayesinde istediğiniz yerden ve cihazdan etkinliklerimize katılarak profesyonel gelişiminizi ücretsiz olarak sürdürebilirsiniz. Sistemimizde genele açık seminerlerimiz tamamen ücretsizdir ve sizler için ücretsiz kalmaya devam edecektir. Bu sayede doğru kaynaktan teorik ve tecrübeye dayalı pratik bilgileri öğrenebilecek, uygulamaları hakkında bilgi sahibi olabileceksiniz.
     video: Lab Akademi'yi kullanma hakkındaki eğitimi izleyin
     upgrade: 2.0'a nasıl yükselteceğimi göster!
     version: Lab Akademi'nin yeni bir sürümünü yayınladık, ancak veritabanınız uyumlu değil.
