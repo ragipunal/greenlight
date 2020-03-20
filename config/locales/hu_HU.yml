@@ -63,14 +63,10 @@ hu_HU:
           approval: Jóváhagy/Elutasít
           invite: Belépés meghívásra
           open: Regisztráció megnyitása
-<<<<<<< HEAD
-      subtitle: Lab Akademi személy szabása
-=======
       rooms:
         info: Ez a beállítás korlátozza egy felhasználó szobáinak számát (beleértve a Saját Szobát is). Az üzemeltetőkre nincs hatással.
         title: Szobák száma felhasználónként
       subtitle: Greenlight személy szabása
->>>>>>> upstream/v2
       title: Weboldal beállításai
     flash:
       approved: A felhasználót sikeresen jóváhagytad.

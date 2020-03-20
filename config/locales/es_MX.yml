@@ -152,13 +152,8 @@ es_MX:
   errors:
     bigbluebutton:
       help: "Asegurate de que los pasos han sido seguidos correctamente. <a href=\"%{doc_link}\">Aprender más</a>"
-<<<<<<< HEAD
       message: La URL o clave secreta del servidor Lab Akademi son inválidos
-      title: Error de servidor
-=======
-      message: La URL o clave secreta del servidor BigBlueButton son inválidos
       title: Error del servidor
->>>>>>> upstream/v2
     internal:
       message: Parece que algo salió mal de nuestro lado.
       help: "El error ha sido registrado, vamos a revisarlo."

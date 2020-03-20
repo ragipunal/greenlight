@@ -36,7 +36,7 @@ it:
         enabled: Abilitato
         info: Permettere l'accesso solo ad utenti autenticati
         title: Richiedi autenticazione per ogni stanza
-        user-info: Devi prima registrarti a BigBlueButton per accedere alla stanza
+        user-info: Devi prima registrarti a Lab Akademi per accedere alla stanza
       branding:
         change: Cambia immagine
         info: Cambia il logo del brand che appare nell'angolo in alto a sinistra
@@ -63,14 +63,10 @@ it:
           approval: Approva/Rifiuta
           invite: Accesso tramite invito
           open: Registrazione libera
-<<<<<<< HEAD
-      subtitle: Personalizza Lab Akademi
-=======
       rooms:
         info: Limita il numero di stanze che un utente può avere (inclusa la stanza Home). Questa impostazione non si applica agli utenti Amministratori
         title: Numero di stanze per utente
       subtitle: Personalizza Greenlight
->>>>>>> upstream/v2
       title: Impostazioni Sito
     flash:
       approved: L'utente è stato approvato con successo
@@ -132,7 +128,7 @@ it:
         username: Nome utente
       title: Gestisci utenti
   add_to_google_calendar: "Aggiungi a Google Calendar"
-  bigbluebutton: BigBlueButton
+  bigbluebutton: Lab Akademi
   bigbluebutton_exception: "Dannazione, c'è stato un errore nell'avvio del meeting!"
   cancel: Annulla
   cookies:

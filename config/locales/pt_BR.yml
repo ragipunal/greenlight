@@ -151,13 +151,8 @@ pt_BR:
   enter_your_name: Insira seu nome
   errors:
     bigbluebutton:
-<<<<<<< HEAD
-      help: "Por favor, tenha certeza que as etapas apropriadas foram finalizadas.. <a href=\"%{doc_link}\">Saiba mais</a>"
-      message: Lab Akademi Endpoint ou Chave Secret inválida
-=======
       help: "Por favor, tenha certeza que as etapas apropriadas foram finalizadas. <a href=\"%{doc_link}\">Saiba mais</a>"
-      message: BigBlueButton Endpoint ou Chave Secret inválida
->>>>>>> upstream/v2
+      message: Lab Akademi Endpoint ou Chave Secret inválida
       title: Erro no Servidor
     internal:
       message: Parece que aconteceu alguma coisa errada no nosso lado.
@@ -270,13 +265,8 @@ pt_BR:
           admins_link: Visite a página da Organização.
           subject: Novo Cadastro de Usuário no Lab Akademi
           username: "Esse usuário se cadastrou com o nome %{name} e o e-mail %{email}."
-<<<<<<< HEAD
         subject: Convite para se juntar ao Lab Akademi.
-        username: "Seu username é %{email}."
-=======
-        subject: Convite para se juntar ao BigBlueButton.
         username: "Sua identificação é %{email}."
->>>>>>> upstream/v2
       password_reset:
         title: 'Reset de senha'
         welcome: "Sua solicitação de resetar senha foi enviada para o endereço <b>%{email}</b>"

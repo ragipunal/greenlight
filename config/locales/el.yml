@@ -17,9 +17,6 @@
 # Locale.
 
 el:
-<<<<<<< HEAD
-  bigbluebutton: Lab Akademi
-=======
   activerecord:
     attributes:
       user:
@@ -131,9 +128,8 @@ el:
         username:
       title:
   add_to_google_calendar:
-  bigbluebutton: BigBlueButton
+  bigbluebutton: Lab Akademi
   bigbluebutton_exception:
->>>>>>> upstream/v2
   cancel: Ακύρωση
   cookies:
     cookie_info:
@@ -167,9 +163,6 @@ el:
       notice: >
         Το Lab Akademi αντιμετώπισε σφάλμα με τη βάση δεδομένων. <br> Αυτό μπορεί να οφείλεται στο ότι δεν έχετε αναβαθμιστει στο Lab Akademi 2.0.
       upgrade: Δείξε μου πώς να αναβαθμίσω σε 2.0!
-<<<<<<< HEAD
-      version: "Έχουμε κυκλοφορήσει μια νέα έκδοση του Lab Akademi, αλλά η βάση δεδομένων σας δεν είναι συμβατή."
-=======
       version: "Έχουμε κυκλοφορήσει μια νέα έκδοση του Greenlight, αλλά η βάση δεδομένων σας δεν είναι συμβατή."
     messages:
       blank:
@@ -182,7 +175,6 @@ el:
     no_provider:
       message:
       help:
->>>>>>> upstream/v2
     not_found:
       message:
       help: Είναι δυνατόν να αφαιρεθεί;
@@ -236,12 +228,8 @@ el:
     welcome: Καλωσήρθες στο <span class="green-grad"> Lab Akademi </span>.
     video: Παρακολουθήστε το σεμινάριο μας σχετικά με τη χρήση του Lab Akademi
     upgrade: Δείξε μου πώς να αναβαθμίσω σε 2.0!
-<<<<<<< HEAD
-    version: "Έχουμε κυκλοφορήσει μια νέα έκδοση του Lab Akademi, αλλά η βάση δεδομένων σας δεν είναι συμβατή."
-=======
     version: "Έχουμε κυκλοφορήσει μια νέα έκδοση του Greenlight, αλλά η βάση δεδομένων σας δεν είναι συμβατή."
   language_default:
->>>>>>> upstream/v2
   ldap_error: Δεν είναι δυνατή η σύνδεση με το διακομιστή LDAP. Ελέγξτε τη διαμόρφωση του LDAP στο αρχείο env και βεβαιωθείτε ότι ο διακομιστής σας εκτελείται.
   login: Σύνδεση
   login_title:
@@ -466,13 +454,6 @@ el:
       disclaimer: "Εάν επιλέξετε να διαγράψετε τον λογαριασμό σας, αυτό <b>ΔΕΝ</b> θα είναι ανακτήσιμο. Όλες οι πληροφορίες σχετικά με το λογαριασμό σας, συμπεριλαμβανομένων των ρυθμίσεων, των δωματίων και των εγγραφών θα καταργηθούν."
       subtitle: Διαγράψτε μόνιμα τον λογαριασμό σας
       title: Διαγραφή λογαριασμού
-<<<<<<< HEAD
-    design:
-      not_supported: Η προσαρμογή δεν υποστηρίζεται αυτή τη στιγμή.
-      subtitle: Προσαρμογή του Lab Akademi
-      title: Σχέδιο
-=======
->>>>>>> upstream/v2
     password:
       confirmation: Επιβεβαίωση νέου κωδικού
       new: Νέος Κωδικός

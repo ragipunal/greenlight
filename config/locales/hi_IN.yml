@@ -21,9 +21,6 @@ hi_IN:
     attributes:
       user:
         accepted_terms: "नियम और शर्तें"
-<<<<<<< HEAD
-  bigbluebutton: Lab Akademi
-=======
         email:
         name:
         password:
@@ -131,8 +128,7 @@ hi_IN:
         username:
       title:
   add_to_google_calendar:
-  bigbluebutton: BigBlueButton
->>>>>>> upstream/v2
+  bigbluebutton: Lab Akademi
   bigbluebutton_exception: "ओह, मीटिंग शुरू करते समय एक एरर हुई!"
   cancel: रद्द करना
   cookies:

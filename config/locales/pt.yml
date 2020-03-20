@@ -21,9 +21,6 @@ pt:
     attributes:
       user:
         accepted_terms: "Termos e Condições"
-<<<<<<< HEAD
-  bigbluebutton: Lab Akademi
-=======
         email:
         name:
         password:
@@ -131,8 +128,7 @@ pt:
         username:
       title:
   add_to_google_calendar:
-  bigbluebutton: BigBlueButton
->>>>>>> upstream/v2
+  bigbluebutton: Lab Akademi
   bigbluebutton_exception: "Oops, aconteceu um erro ao tentar começar a reunião."
   cancel: Cancelar
   cookies:
@@ -167,9 +163,6 @@ pt:
       notice: >
         Lab Akademi encontrou um erro de migração no banco de dados.<br> Isso pode ser porque você não atualizou para o Lab Akademi 2.0.
       upgrade: Mostre-me como atualizar para 2.0!
-<<<<<<< HEAD
-      version: "Lançamos uma nova versão do Lab Akademi, entretanto sua base de dados é incompatível."
-=======
       version: "Lançamos uma nova versão do Greenlight, entretanto sua base de dados é incompatível."
     messages:
       blank:
@@ -182,7 +175,6 @@ pt:
     no_provider:
       message:
       help:
->>>>>>> upstream/v2
     not_found:
       message:
       help: "É possível que tenha sido removido?"
@@ -462,13 +454,6 @@ pt:
       disclaimer: "Se você escolher deletar sua conta, isto <b>NÃO</b> poderá ser desfeito. Todas as informações relacionadas a sua conta, incluindo configurações, salas e gravações serão removidas."
       subtitle: Deletar conta Permanentemente
       title: Deletar Conta
-<<<<<<< HEAD
-    design:
-      not_supported: Personalização atualmente não suportada.
-      subtitle: Personalizar Lab Akademi
-      title: Design
-=======
->>>>>>> upstream/v2
     password:
       confirmation: Confirmação da Nova Senha
       new: Nova Senha
