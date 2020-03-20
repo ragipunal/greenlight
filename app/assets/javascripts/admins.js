@@ -21,17 +21,6 @@ $(document).on('turbolinks:load', function(){
   // Only run on the admins page.
   if (controller == "admins") {
     if(action == "index") {
-      // show the modal with the correct form action url
-      $(".delete-user").click(function(data){
-        var uid = $(data.target).closest("tr").data("user-uid")
-        var url = $("body").data("relative-root")
-        if (!url.endsWith("/")) {
-          url += "/"
-        }
-        url += "u/" + uid
-        $("#delete-confirm").parent().attr("action", url)
-      })
-
       //clear the role filter if user clicks on the x
       $(".clear-role").click(function() {
         var search = new URL(location.href).searchParams.get('search')
@@ -43,6 +32,57 @@ $(document).on('turbolinks:load', function(){
         }  
       
         window.location.replace(url);
+      })
+
+      // Handle selected user tags
+      $(".manage-users-tab").click(function() {
+        $(".manage-users-tab").removeClass("selected")
+        $(this).addClass("selected")
+
+        updateTabParams(this.id)
+      })
+
+      $('.selectpicker').selectpicker({
+        liveSearchPlaceholder: getLocalizedString('javascript.search.start')
+      });
+      // Fixes turbolinks issue with bootstrap select
+      $(window).trigger('load.bs.select.data-api');
+      
+      // Display merge accounts modal with correct info
+      $(".merge-user").click(function() {
+        // Update the path of save button
+        $("#merge-save-access").attr("data-path", $(this).data("path"))
+
+        let userInfo = $(this).data("info")
+
+        $("#merge-to").html("<span>" + userInfo.name + "</span>" + "<span class='text-muted d-block'>" + userInfo.email + "</span>" + "<span class='text-muted d-block'>" + userInfo.uid + "</span>")
+ 
+      })
+
+      $("#mergeUserModal").on("show.bs.modal", function() {
+        $(".selectpicker").selectpicker('val','')
+      })
+  
+      $(".bootstrap-select").on("click", function() {
+        $(".bs-searchbox").siblings().hide()
+      })
+  
+      $(".bs-searchbox input").on("input", function() {
+        if ($(".bs-searchbox input").val() == '' || $(".bs-searchbox input").val().length < 3) {
+          $(".bs-searchbox").siblings().hide()
+        } else {
+          $(".bs-searchbox").siblings().show()
+        }
+      })
+
+      // User selects an option from the Room Access dropdown
+      $(".bootstrap-select").on("changed.bs.select", function(){
+        // Get the uid of the selected user
+        let user = $(".selectpicker").selectpicker('val')
+        if (user != "") {
+          userInfo = JSON.parse(user)
+          $("#merge-from").html("<span>" + userInfo.name + "</span>" + "<span class='text-muted d-block'>" + userInfo.email + "</span>" + "<span id='from-uid' class='text-muted d-block'>" + userInfo.uid + "</span>")
+        }
       })
     }
     else if(action == "site_settings"){
@@ -79,7 +119,12 @@ $(document).on('turbolinks:load', function(){
 // Change the branding image to the image provided
 function changeBrandingImage(path) {
   var url = $("#branding-url").val()
-  $.post(path, {url: url})
+  $.post(path, {value: url})
+}
+
+function mergeUsers() {
+  let userToMerge = $("#from-uid").text()
+  $.post($("#merge-save-access").data("path"), {merge: userToMerge})
 }
 
 // Filters by role
@@ -93,6 +138,20 @@ function filterRole(role) {
   }  
 
   window.location.replace(url);
+}
+
+function updateTabParams(tab) {
+  var search_params = new URLSearchParams(window.location.search)
+
+  if (window.location.href.includes("tab=")) {
+    search_params.set("tab", tab)
+  } else {
+    search_params.append("tab", tab)
+  }
+
+  search_params.delete("page")
+
+  window.location.search = search_params.toString()
 }
 
 function loadColourSelectors() {
@@ -157,19 +216,19 @@ function loadColourSelectors() {
   });
 
   pickrRegular.on("save", (color, instance) => {
-    $.post($("#coloring-path-regular").val(), {color: color.toHEXA().toString()}).done(function() {
+    $.post($("#coloring-path-regular").val(), {value: color.toHEXA().toString()}).done(function() {
       location.reload()
     });
   })
 
   pickrLighten.on("save", (color, instance) => {
-    $.post($("#coloring-path-lighten").val(), {color: color.toHEXA().toString()}).done(function() {
+    $.post($("#coloring-path-lighten").val(), {value: color.toHEXA().toString()}).done(function() {
       location.reload()
     });
   })
 
   pickrDarken.on("save", (color, instance) => {
-    $.post($("#coloring-path-darken").val(), {color: color.toHEXA().toString()}).done(function() {
+    $.post($("#coloring-path-darken").val(), {value: color.toHEXA().toString()}).done(function() {
       location.reload()
     });
   })

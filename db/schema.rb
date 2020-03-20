@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_153012) do
+ActiveRecord::Schema.define(version: 2020_01_30_144841) do
 
   create_table "features", force: :cascade do |t|
     t.integer "setting_id"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 2019_07_26_153012) do
     t.index ["provider"], name: "index_invitations_on_provider"
   end
 
+  create_table "role_permissions", force: :cascade do |t|
+    t.string "name"
+    t.string "value", default: ""
+    t.boolean "enabled", default: false
+    t.integer "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_role_permissions_on_role_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.integer "priority", default: 9999
@@ -48,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_153012) do
     t.datetime "updated_at", null: false
     t.index ["name", "provider"], name: "index_roles_on_name_and_provider", unique: true
     t.index ["name"], name: "index_roles_on_name"
+    t.index ["priority", "provider"], name: "index_roles_on_priority_and_provider", unique: true
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -63,7 +74,9 @@ ActiveRecord::Schema.define(version: 2019_07_26_153012) do
     t.string "moderator_pw"
     t.string "attendee_pw"
     t.string "access_code"
+    t.boolean "deleted", default: false, null: false
     t.index ["bbb_id"], name: "index_rooms_on_bbb_id"
+    t.index ["deleted"], name: "index_rooms_on_deleted"
     t.index ["last_session"], name: "index_rooms_on_last_session"
     t.index ["name"], name: "index_rooms_on_name"
     t.index ["sessions"], name: "index_rooms_on_sessions"
@@ -76,6 +89,15 @@ ActiveRecord::Schema.define(version: 2019_07_26_153012) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider"], name: "index_settings_on_provider"
+  end
+
+  create_table "shared_accesses", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_shared_accesses_on_room_id"
+    t.index ["user_id"], name: "index_shared_accesses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,7 +119,9 @@ ActiveRecord::Schema.define(version: 2019_07_26_153012) do
     t.datetime "reset_sent_at"
     t.string "activation_digest"
     t.datetime "activated_at"
+    t.boolean "deleted", default: false, null: false
     t.index ["created_at"], name: "index_users_on_created_at"
+    t.index ["deleted"], name: "index_users_on_deleted"
     t.index ["email"], name: "index_users_on_email"
     t.index ["password_digest"], name: "index_users_on_password_digest", unique: true
     t.index ["provider"], name: "index_users_on_provider"

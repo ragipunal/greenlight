@@ -125,6 +125,8 @@ module Greenlight
     config.maintenance_window = ENV["MAINTENANCE_WINDOW"]
     config.maintenance_mode = ENV["MAINTENANCE_MODE"] == "true"
 
+    config.report_issue_url = ENV["REPORT_ISSUE_URL"]
+
     # DEFAULTS
 
     # Default branding image if the user does not specify one
@@ -151,13 +153,10 @@ module Greenlight
     # Default limit on number of rooms users can create
     config.number_of_rooms_default = 15
 
+    # Allow users to share rooms by default
+    config.shared_access_default = "true"
+
     # Default admin password
     config.admin_password_default = ENV['ADMIN_PASSWORD'] || 'administrator'
-
-    config.action_cable.log_tags = [
-      ->(request) { request.session['user_id'] || "no-account" },
-      :action_cable,
-      ->(request) { request.uuid }
-    ]
   end
 end

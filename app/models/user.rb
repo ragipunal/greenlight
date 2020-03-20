@@ -19,17 +19,17 @@
 require 'bbb_api'
 
 class User < ApplicationRecord
-  include ::BbbApi
+  include Deleteable
 
-  attr_accessor :reset_token
-  after_create :assign_default_role
-  after_create :initialize_main_room
+  attr_accessor :reset_token, :activation_token
+  after_create :setup_user
 
   before_save { email.try(:downcase!) }
 
   before_destroy :destroy_rooms
 
   has_many :rooms
+  has_many :shared_access
   belongs_to :main_room, class_name: 'Room', foreign_key: :room_id, required: false
 
   has_and_belongs_to_many :roles, join_table: :users_roles
@@ -51,6 +51,8 @@ class User < ApplicationRecord
   has_secure_password(validations: false)
 
   class << self
+    include AuthValues
+
     # Generates a user from omniauth.
     def from_omniauth(auth)
       # Provider is the customer name if in loadbalanced config mode
@@ -63,54 +65,6 @@ class User < ApplicationRecord
         auth_roles(u, auth)
         u.email_verified = true
         u.save!
-      end
-    end
-
-    private
-
-    # Provider attributes.
-    def auth_name(auth)
-      case auth['provider']
-      when :office365
-        auth['info']['display_name']
-      else
-        auth['info']['name']
-      end
-    end
-
-    def auth_username(auth)
-      case auth['provider']
-      when :google
-        auth['info']['email'].split('@').first
-      when :bn_launcher
-        auth['info']['username']
-      else
-        auth['info']['nickname']
-      end
-    end
-
-    def auth_email(auth)
-      auth['info']['email']
-    end
-
-    def auth_image(auth)
-      case auth['provider']
-      when :twitter
-        auth['info']['image'].gsub("http", "https").gsub("_normal", "")
-      else
-        auth['info']['image']
-      end
-    end
-
-    def auth_roles(user, auth)
-      unless auth['info']['roles'].nil?
-        roles = auth['info']['roles'].split(',')
-
-        role_provider = auth['provider'] == "bn_launcher" ? auth['info']['customer'] : "greenlight"
-        roles.each do |role_name|
-          role = Role.where(provider: role_provider, name: role_name).first
-          user.roles << role unless role.nil?
-        end
       end
     end
   end
@@ -149,30 +103,31 @@ class User < ApplicationRecord
     order(Arel.sql("#{column} #{direction}"))
   end
 
+  # Returns a list of rooms ordered by last session (with nil rooms last)
+  def ordered_rooms
+    [main_room] + rooms.where.not(id: main_room.id).order(Arel.sql("last_session IS NULL, last_session desc"))
+  end
+
   # Activates an account and initialize a users main room
   def activate
-    update_attribute(:email_verified, true)
-    update_attribute(:activated_at, Time.zone.now)
-    save
+    update_attributes(email_verified: true, activated_at: Time.zone.now)
   end
 
   def activated?
-    return true unless Rails.configuration.enable_email_verification
-    email_verified
+    Rails.configuration.enable_email_verification ? email_verified : true
   end
 
   # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
-    update_attribute(:reset_digest,  User.digest(reset_token))
-    update_attribute(:reset_sent_at, Time.zone.now)
+    update_attributes(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
   end
 
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
-    BCrypt::Password.new(digest).is_password?(token)
+    digest == Digest::SHA256.base64digest(token)
   end
 
   # Return true if password reset link expires
@@ -180,12 +135,9 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
-  # Retrives a list of all a users rooms that are not the main room, sorted by last session date.
-  def secondary_rooms
-    secondary = (rooms - [main_room])
-    no_session, session = secondary.partition { |r| r.last_session.nil? }
-    sorted = session.sort_by(&:last_session)
-    sorted + no_session
+  # Retrieves a list of rooms that are shared with the user
+  def shared_rooms
+    Room.where(id: shared_access.pluck(:room_id))
   end
 
   def name_chunk
@@ -203,17 +155,12 @@ class User < ApplicationRecord
   end
 
   def greenlight_account?
-    return true unless provider # For testing cases when provider is set to null
-    return true if provider == "greenlight"
-    return false unless Rails.configuration.loadbalanced_configuration
-    # Proceed with fetching the provider info
-    provider_info = retrieve_provider_info(provider, 'api2', 'getUserGreenlightCredentials')
-    provider_info['provider'] == 'greenlight'
+    social_uid.nil?
   end
 
-  def activation_token
-    # Create the token.
-    create_reset_activation_digest(User.new_token)
+  def create_activation_token
+    self.activation_token = User.new_token
+    update_attributes(activation_digest: User.digest(activation_token))
   end
 
   def admin_of?(user)
@@ -221,17 +168,16 @@ class User < ApplicationRecord
       if has_role? :super_admin
         id != user.id
       else
-        highest_priority_role.can_manage_users && (id != user.id) && (provider == user.provider) &&
+        highest_priority_role.get_permission("can_manage_users") && (id != user.id) && (provider == user.provider) &&
           (!user.has_role? :super_admin)
       end
     else
-      (highest_priority_role.can_manage_users || (has_role? :super_admin)) && (id != user.id)
+      (highest_priority_role.get_permission("can_manage_users") || (has_role? :super_admin)) && (id != user.id)
     end
   end
 
   def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
+    Digest::SHA256.base64digest(string)
   end
 
   # Returns a random token.
@@ -241,7 +187,7 @@ class User < ApplicationRecord
 
   # role functions
   def highest_priority_role
-    roles.by_priority.first
+    roles.min_by(&:priority)
   end
 
   def add_role(role)
@@ -275,7 +221,11 @@ class User < ApplicationRecord
   # rubocop:disable Naming/PredicateName
   def has_role?(role)
     # rubocop:enable Naming/PredicateName
-    roles.exists?(name: role)
+    roles.each do |single_role|
+      return true if single_role.name.eql? role.to_s
+    end
+
+    false
   end
 
   def self.with_role(role)
@@ -286,38 +236,40 @@ class User < ApplicationRecord
     User.where.not(id: with_role(role).pluck(:id))
   end
 
+  def self.with_highest_priority_role(role)
+    User.all_users_highest_priority_role.where(roles: { name: role })
+  end
+
   def self.all_users_with_roles
     User.joins("INNER JOIN users_roles ON users_roles.user_id = users.id INNER JOIN roles " \
-      "ON roles.id = users_roles.role_id")
+      "ON roles.id = users_roles.role_id INNER JOIN role_permissions ON roles.id = role_permissions.role_id").distinct
+  end
+
+  def self.all_users_highest_priority_role
+    User.joins("INNER JOIN (SELECT user_id, min(roles.priority) as role_priority FROM users_roles " \
+      "INNER JOIN roles ON users_roles.role_id = roles.id GROUP BY user_id) as a ON " \
+      "a.user_id = users.id INNER JOIN roles ON roles.priority = a.role_priority " \
+      " INNER JOIN role_permissions ON roles.id = role_permissions.role_id").distinct
   end
 
   private
-
-  def create_reset_activation_digest(token)
-    # Create the digest and persist it.
-    self.activation_digest = User.digest(token)
-    save
-    token
-  end
 
   # Destory a users rooms when they are removed.
   def destroy_rooms
     rooms.destroy_all
   end
 
-  # Initializes a room for the user and assign a BigBlueButton user id.
-  def initialize_main_room
-    self.uid = "gl-#{(0...12).map { rand(65..90).chr }.join.downcase}"
-    self.main_room = Room.create!(owner: self, name: I18n.t("home_room"))
-    save
-  end
+  def setup_user
+    # Initializes a room for the user and assign a BigBlueButton user id.
+    id = "gl-#{(0...12).map { rand(65..90).chr }.join.downcase}"
+    room = Room.create!(owner: self, name: I18n.t("home_room"))
 
-  # Initialize the user to use the default user role
-  def assign_default_role
+    update_attributes(uid: id, main_room: room)
+
+    # Initialize the user to use the default user role
     role_provider = Rails.configuration.loadbalanced_configuration ? provider : "greenlight"
 
     Role.create_default_roles(role_provider) if Role.where(provider: role_provider).count.zero?
-
     add_role(:user) if roles.blank?
   end
 

@@ -46,12 +46,25 @@ en:
         info: Clears the stored provider cache which forces a new request for the updated info
         title: Clear Provider Cache
         button: Clear Cache
+      clear_auth:
+        info: Clears the current authenticator for users allowing them to sign back in using a different authentication method
+        title: Clear Current Authenticator
+        button: Clear Auth
       color:
         info: Changing the Regular Color will change both Lighten and Darken. Lighten and Darken can then be changed individually
         title: Primary Color
         regular: Regular
         lighten: Lighten
         darken: Darken
+      log_level:
+        title: Log Level
+        information: Change the Log Level for the entire deployment
+        debug: Debug
+        info: Info
+        warn: Warn
+        error: Error
+        fatal: Fatal
+        unknown: Unknown
       recording_visibility:
         info: Set the default recording visbility for new recordings
         title: Recording Default Visibility
@@ -66,7 +79,14 @@ en:
       rooms:
         info: Limits the number of rooms that a user can have (including Home Room). This setting does not apply to administrators.
         title: Number of Rooms per User
+<<<<<<< HEAD
       subtitle: Customize Lab Akademi
+=======
+      shared_access:
+        info: Setting to disabled will remove the button from the Room options dropdown, preventing users from sharing rooms
+        title: Allow Users to Share Rooms
+      subtitle: Customize Greenlight
+>>>>>>> upstream/v2
       title: Site Settings
     flash:
       approved: User has been successfully approved.
@@ -77,21 +97,26 @@ en:
       demoted: User has been successfully demoted
       invite: Invite successfully sent to %{email}
       invite_email_verification: Emails must be enabled in order to use this method. Please contact your system administrator.
+      merge_fail: There was an issue merging the user accounts. Please check the users selected and try again 
+      merge_success: User accounts merged successfully
+      perm_deleted: User has been permanently deleted
       promoted: User has been successfully promoted
       registration_method_updated: Registration method successfully updated
       reset_password: The user has been sent an email to reset their password. (Please ask them to check their spam folder if they haven't received it)
+      restored: User has been successfully restored
       settings: Site Settings successfully changed
       unauthorized: You are not authorized to perform actions on this user
     recordings:
       title: Server Recordings
       no_recordings: This server has no recordings.
     roles:
+      appear_in_share_list: Include users with this role in the dropdown for sharing rooms
       can_create_rooms: Can create rooms
       delete: Delete the role
-      duplicate_name: The role name you provided was a duplicate. All role names must be unique
-      empty_name: All roles must have a non empty name
-      invalid_order: The user role must be the lowest priority role and the admin role must be the highest priority role
-      invalid_update: You can't update a role with a higher priority than your own role
+      invalid_create: There was a problem creating a new role. Please check the role values and try again
+      invalid_order: There was a problem updating the priority of the role. Please check the values and try again
+      invalid_update: There was a problem updating the permissions of the role. Please check the values and try again
+      manage_rooms_recordings: Allow users with this role to manage server rooms and recordings
       name: Role Name
       new_role: Create a new role
       role_has_users: This role is assigned to %{user_count} accounts. Please remove all accounts from this role before deleting it.
@@ -101,11 +126,18 @@ en:
       edit_site_settings: Allow users with this role to edit site settings
       edit_roles: Allow users with this role to edit other roles
       manage_users: Allow users with this role to manage users
-      invalid_assignment: You can't assign a role with a higher priority than your own to a user
-      invalid_removal: You can't remove a role with a higher priority than your own
+      invalid_assignment: There was a problem assigning the roles to the user. Please check the values and try again 
       colour:
         title: Role Colour
         info: Set the colour that will be associated with the role
+    rooms:
+      title: Server Rooms
+      table:
+        id: ID
+        not_running: Not Running
+        running: Running
+        status: Status
+        view: View
     title: Organization Settings
     users:
       invite: Invite User
@@ -118,7 +150,9 @@ en:
         delete: Delete
         edit: Edit
         edit_roles: Edit the user roles
+        perm_delete: Permanently Delete
         unban: Unban User
+        undelete: Undelete
       table:
         authenticator: Authenticator
         created: Created
@@ -155,6 +189,7 @@ en:
     internal:
       message: Looks like something went wrong on our end.
       help: The error has been logged, we'll take a look!
+      report: Report Issue
     maintenance:
       message: Sorry, we're down for maintenance.
       help: We'll be back soon!
@@ -223,8 +258,15 @@ en:
       mailer:
         subject: 'has invited you to view a recording.'
         body: 'To view the recording, follow the link below:'
+<<<<<<< HEAD
         autogenerated: 'This e-mail is auto-generated by Lab Akademi.'
         footer: 'Lab Akademi is an open source web conferencing system. For more information on Lab Akademi, see https://bigbluebutton.org/.'
+=======
+        autogenerated: 'This e-mail is auto-generated by BigBlueButton.'
+        footer: 'BigBlueButton is an open source web conferencing system. For more information on BigBlueButton, see https://bigbluebutton.org/.'
+    search:
+      start: Start searching...
+>>>>>>> upstream/v2
   landing:
     about: "%{href} is a simple front-end for your Lab Akademi open-source web conferencing server. You can create your own rooms to host sessions, or join others using a short and convenient link."
     welcome: Welcome to Lab Akademi.
@@ -288,6 +330,7 @@ en:
   maintenance:
     window_alert: Maintenance window scheduled for %{date}
   max_concurrent: The maximum number of concurrent sessions allowed has been reached!
+  merged: Merged
   modal:
     create_role:
       create: Create a new Role
@@ -308,6 +351,7 @@ en:
       confirm: Are you sure you want to delete this account?
       delete: I'm sure, delete this account.
       keep: Actually, I'll keep it.
+      delete_warning: This will deactivate the user's account. All deactived users can be found under the deleted tab.
       warning: This decision is final. You will <b>not</b> be able to recover associated data.
     delete_room:
       confirm: Are you sure you want to delete %{room}?
@@ -325,6 +369,10 @@ en:
       with: Sign in with %{provider}
       forgot_password: Forgot Password?
     rename_recording:
+    remove_shared:
+      title: Are you sure you want to remove this room from your room list?
+      delete: I'm sure, remove this room.
+      warning: You will <b>not</b> be able to access this room anymore.
     room_settings:
       title: Room Settings
       update: Update Room
@@ -336,6 +384,20 @@ en:
       footer_text: Adjustment to your room can be done at anytime.
     rename_room:
       name_placeholder: Enter a new room name...
+    share_access:
+      footer: Sharing a room with a user allows them to start the room and view the room's recordings
+      list: Shared With
+      title: Share Room Access
+      save: Save Changes
+      cancel_changes: Cancel Changes
+      select: Select User
+    merge_user:
+      cancel: Cancel
+      from: Account to be Merged
+      title: Merge User Accounts
+      to: Primary Account
+      save: Merge
+      footer: The rooms of the account to be merged will be transfered over to the Primary Account's room list and then the account will be deleted.
   name_update_success: Room name successfully changed!
   no_user_email_exists: There is no existing user with the email specified. Please make sure you typed it correctly.
   omniauth_error: An error occured while authenticating with omniauth. Please try again or contact an administrator!
@@ -361,6 +423,7 @@ en:
   recording:
     all_recordings: All Recordings
     email: Email Recording
+    error: There was an error retrieving %{count} recording(s)
     no_recordings: This room has no %{inject}recordings.
     no_user_recordings: You currently have no recordings.
     no_matched_recordings: No %{inject} recordings match your search.
@@ -379,7 +442,7 @@ en:
       notes: Notes
       podcast: Podcast
       presentation: Presentation
-      statistics: Statitics
+      statistics: Statistics
       video: Video
   registration:
     approval:
@@ -395,15 +458,19 @@ en:
     invite:
       fail: Your token is either invalid or has expired. If you believe this is a mistake, please contact your administrator.
       no_invite: You do not have an invitation to join. Please contact your administrator to receive one.
+  remove: Remove
   rename: Rename
   reset_password:
     subtitle: Reset Password
     password: New Password
     confirm: New Password Confirmation
     update: Update Password
+    auth_change: The authentication method has changed. Please check your email to set your password.
   roles:
+    active: Active
     admin: Admin
     banned: Banned
+    deleted: Deleted
     pending: Pending
     user: User
   room:
@@ -411,6 +478,10 @@ en:
     create_room: Create a Room
     create_room_error: There was an error creating the room
     create_room_success: Room created successfully
+    delete:
+      home_room: Can't delete user's Home Room
+      success: Room deleted successfully
+      fail: Failed to delete room (%{error})
     enter_the_access_code: Enter the room's access code
     invalid_provider: You have entered an invalid url. Please check the url and try again.
     invited: You have been invited to join
@@ -419,6 +490,7 @@ en:
     last_session: Last session on %{session}
     login: Enter
     owner: Owner
+    owner_banned: This room is currently unavailable
     no_room:
       description: Enter the room url or the room id for the room you want to join.
       edit_profile: Edit User Profile
@@ -434,6 +506,12 @@ en:
     room_limit_exceeded: You have exceeded the number of rooms allowed. Please delete %{difference} room(s) to access this room.
     sessions: Sessions
     settings: Room Settings
+    share: Manage Access
+    shared_by: Shared by %{email}
+    remove_shared_access_success: Successfully removed shared room from your room list
+    remove_shared_access_error: There was an error removing the shared room from your list
+    shared_access_success: Room shared successfully
+    shared_access_error: There was an error sharing the room
     start: Start
     unavailable: This room is currently unavailable due to the owner's email not being verified.
     update_settings_error: There was an error updating the room settings

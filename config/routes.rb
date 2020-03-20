@@ -17,7 +17,7 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 Rails.application.routes.draw do
-  get 'health_check', to: 'health_check/health_check#index'
+  get '/health_check', to: 'health_check#all'
 
   # Error routes.
   match '/401', to: 'errors#unauthorized', via: :all, as: :unauthorized
@@ -25,10 +25,10 @@ Rails.application.routes.draw do
   match '/500', to: 'errors#internal_error', via: :all, as: :internal_error
 
   # Signin/Signup routes.
-  get '/signin', to: 'users#signin', as: :signin
-  get '/signup', to: 'users#new', as: :signup
+  get '/signin', to: 'sessions#signin', as: :signin
+  get '/signup', to: 'sessions#new', as: :signup
   post '/signup', to: 'users#create', as: :create_user
-  get '/ldap_signin', to: 'users#ldap_signin', as: :ldap_signin
+  get '/ldap_signin', to: 'sessions#ldap_signin', as: :ldap_signin
 
   # Redirect to terms page
   match '/terms', to: 'users#terms', via: [:get, :post]
@@ -37,25 +37,28 @@ Rails.application.routes.draw do
   resources :admins, only: [:index]
 
   scope '/admins' do
-    get '/site_settings', to: 'admins#site_settings', as: :admin_site_settings
+    # Panel Tabs
+    get '/rooms', to: 'admins#server_rooms', as: :admin_rooms
     get '/recordings', to: 'admins#server_recordings', as: :admin_recordings
-    post '/branding', to: 'admins#branding', as: :admin_branding
-    post '/coloring', to: 'admins#coloring', as: :admin_coloring
-    post '/room_authentication', to: 'admins#room_authentication', as: :admin_room_authentication
-    post '/coloring_lighten', to: 'admins#coloring_lighten', as: :admin_coloring_lighten
-    post '/coloring_darken', to: 'admins#coloring_darken', as: :admin_coloring_darken
-    post '/signup', to: 'admins#signup', as: :admin_signup
+    get '/site_settings', to: 'admins#site_settings', as: :admin_site_settings
+    get '/roles', to: 'admins#roles', as: :admin_roles
+    # Manage Users
     get '/edit/:user_uid', to: 'admins#edit_user', as: :admin_edit_user
     post '/ban/:user_uid', to: 'admins#ban_user', as: :admin_ban
     post '/unban/:user_uid', to: 'admins#unban_user', as: :admin_unban
     post '/invite', to: 'admins#invite', as: :invite_user
-    post '/registration_method/:method', to: 'admins#registration_method', as: :admin_change_registration
     post '/approve/:user_uid', to: 'admins#approve', as: :admin_approve
     get '/reset', to: 'admins#reset', as: :admin_reset
-    post '/room_limit', to: 'admins#room_limit', as: :admin_room_limit
-    post '/default_recording_visibility', to: 'admins#default_recording_visibility', as: :admin_recording_visibility
+    post '/undelete', to: 'admins#undelete', as: :admin_undelete
+    post '/merge/:user_uid', to: 'admins#merge_user', as: :merge_user
+    # Site Settings
+    post '/update_settings', to: 'admins#update_settings', as: :admin_update_settings
+    post '/registration_method', to: 'admins#registration_method', as: :admin_change_registration
+    post '/coloring', to: 'admins#coloring', as: :admin_coloring
     post '/clear_cache', to: 'admins#clear_cache', as: :admin_clear_cache
-    get '/roles', to: 'admins#roles', as: :admin_roles
+    post '/clear_auth', to: 'admins#clear_auth', as: :admin_clear_auth
+    post '/log_level', to: 'admins#log_level', as: :admin_log_level
+    # Roles
     post '/role', to: 'admins#new_role', as: :admin_new_role
     patch 'roles/order', to: 'admins#change_role_order', as: :admin_roles_order
     post '/role/:role_id', to: 'admins#update_role', as: :admin_update_role
@@ -86,6 +89,8 @@ Rails.application.routes.draw do
 
     # Account management.
     get '/:user_uid/edit', to: 'users#edit', as: :edit_user
+    get '/:user_uid/change_password', to: 'users#change_password', as: :change_password
+    get '/:user_uid/delete_account', to: 'users#delete_account', as: :delete_account
     patch '/:user_uid/edit', to: 'users#update', as: :update_user
     delete '/:user_uid', to: 'users#destroy', as: :delete_user
 
@@ -108,7 +113,11 @@ Rails.application.routes.draw do
   scope '/:room_uid' do
     post '/', to: 'rooms#join'
     patch '/', to: 'rooms#update', as: :update_room
+    get '/room_settings', to: 'rooms#room_settings'
     post '/update_settings', to: 'rooms#update_settings'
+    post '/update_shared_access', to: 'rooms#shared_access', as: :room_shared_access
+    delete '/remove_shared_access', to: 'rooms#remove_shared_access', as: :room_remove_shared_access
+    get '/shared_users', to: 'rooms#shared_users', as: :room_shared_users
     post '/start', to: 'rooms#start', as: :start_room
     get '/logout', to: 'rooms#logout', as: :logout_room
     post '/login', to: 'rooms#login', as: :login_room
@@ -118,8 +127,9 @@ Rails.application.routes.draw do
   scope '/:meetingID' do
     # Manage recordings
     scope '/:record_id' do
-      post '/', to: 'recordings#update_recording', as: :update_recording
-      delete '/', to: 'recordings#delete_recording', as: :delete_recording
+      post '/', to: 'recordings#update', as: :update_recording
+      patch '/', to: 'recordings#rename', as: :rename_recording
+      delete '/', to: 'recordings#delete', as: :delete_recording
     end
   end
 

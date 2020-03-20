@@ -21,25 +21,29 @@ class AdminsController < ApplicationController
   include Themer
   include Emailer
   include Recorder
+  include Rolify
+  include Populator
 
-  manage_users = [:edit_user, :promote, :demote, :ban_user, :unban_user, :approve, :reset]
-  site_settings = [:branding, :coloring, :coloring_lighten, :coloring_darken,
-                   :registration_method, :room_authentication, :room_limit, :default_recording_visibility]
-
+  manage_users = [:edit_user, :promote, :demote, :ban_user, :unban_user, :approve, :reset, :merge_user]
+  manage_deleted_users = [:undelete]
   authorize_resource class: false
   before_action :find_user, only: manage_users
-  before_action :verify_admin_of_user, only: manage_users
-  before_action :find_setting, only: site_settings
+  before_action :find_deleted_user, only: manage_deleted_users
+  before_action :verify_admin_of_user, only: [manage_users, manage_deleted_users]
 
   # GET /admins
   def index
+    # Initializa the data manipulation variables
     @search = params[:search] || ""
     @order_column = params[:column] && params[:direction] != "none" ? params[:column] : "created_at"
     @order_direction = params[:direction] && params[:direction] != "none" ? params[:direction] : "DESC"
 
     @role = params[:role] ? Role.find_by(name: params[:role], provider: @user_domain) : nil
+    @tab = params[:tab] || "active"
 
-    @pagy, @users = pagy(user_list)
+    @user_list = merge_user_list
+
+    @pagy, @users = pagy(manage_users_list)
   end
 
   # GET /admins/site_settings
@@ -48,35 +52,48 @@ class AdminsController < ApplicationController
 
   # GET /admins/server_recordings
   def server_recordings
-    server_rooms = if Rails.configuration.loadbalanced_configuration
-      Room.includes(:owner).where(users: { provider: user_settings_provider }).pluck(:bbb_id)
-    else
-      Room.pluck(:bbb_id)
-    end
+    server_rooms = rooms_list_for_recordings
 
     @search, @order_column, @order_direction, recs =
-      all_recordings(server_rooms, @user_domain, params.permit(:search, :column, :direction), true, true)
+      all_recordings(server_rooms, params.permit(:search, :column, :direction), true, true)
+
     @pagy, @recordings = pagy_array(recs)
+  end
+
+  # GET /admins/rooms
+  def server_rooms
+    @search = params[:search] || ""
+    @order_column = params[:column] && params[:direction] != "none" ? params[:column] : "created_at"
+    @order_direction = params[:direction] && params[:direction] != "none" ? params[:direction] : "DESC"
+
+    @running_room_bbb_ids = all_running_meetings[:meetings].pluck(:meetingID)
+
+    @user_list = shared_user_list if shared_access_allowed
+
+    @pagy, @rooms = pagy_array(server_rooms_list)
   end
 
   # MANAGE USERS
 
   # GET /admins/edit/:user_uid
   def edit_user
+    session[:prev_url] = request.referer if request.referer.present?
   end
 
   # POST /admins/ban/:user_uid
   def ban_user
     @user.roles = []
     @user.add_role :denied
-    redirect_to admins_path, flash: { success: I18n.t("administrator.flash.banned") }
+
+    redirect_back fallback_location: admins_path, flash: { success: I18n.t("administrator.flash.banned") }
   end
 
   # POST /admins/unban/:user_uid
   def unban_user
     @user.remove_role :denied
     @user.add_role :user
-    redirect_to admins_path, flash: { success: I18n.t("administrator.flash.unbanned") }
+
+    redirect_back fallback_location: admins_path, flash: { success: I18n.t("administrator.flash.unbanned") }
   end
 
   # POST /admins/approve/:user_uid
@@ -85,24 +102,26 @@ class AdminsController < ApplicationController
 
     send_user_approved_email(@user)
 
-    redirect_to admins_path, flash: { success: I18n.t("administrator.flash.approved") }
+    redirect_back fallback_location: admins_path, flash: { success: I18n.t("administrator.flash.approved") }
+  end
+
+  # POST /admins/approve/:user_uid
+  def undelete
+    # Undelete the user and all of his rooms
+    @user.undelete!
+    @user.rooms.deleted.each(&:undelete!)
+
+    redirect_back fallback_location: admins_path, flash: { success: I18n.t("administrator.flash.restored") }
   end
 
   # POST /admins/invite
   def invite
     emails = params[:invite_user][:email].split(",")
 
-    begin
-      emails.each do |email|
-        invitation = create_or_update_invite(email)
+    emails.each do |email|
+      invitation = create_or_update_invite(email)
 
-        send_invitation_email(current_user.name, email, invitation.invite_token)
-      end
-    rescue => e
-      logger.error "Support: Error in email delivery: #{e}"
-      flash[:alert] = I18n.t(params[:message], default: I18n.t("delivery_error"))
-    else
-      flash[:success] = I18n.t("administrator.flash.invite", email: emails.join(', '))
+      send_invitation_email(current_user.name, email, invitation.invite_token)
     end
 
     redirect_to admins_path
@@ -114,43 +133,80 @@ class AdminsController < ApplicationController
 
     send_password_reset_email(@user)
 
-    redirect_to admins_path, flash: { success: I18n.t("administrator.flash.reset_password") }
+    if session[:prev_url].present?
+      redirect_path = session[:prev_url]
+      session.delete(:prev_url)
+    else
+      redirect_path = admins_path
+    end
+
+    redirect_to redirect_path, flash: { success: I18n.t("administrator.flash.reset_password") }
   end
+
+  # POST /admins/merge/:user_uid
+  def merge_user
+    begin
+      # Get uid of user that will be merged into the other account
+      uid_to_merge = params[:merge]
+      logger.info "#{current_user.uid} is attempting to merge #{uid_to_merge} into #{@user.uid}"
+
+      # Check to make sure the 2 users are unique
+      raise "Can not merge the user into themself" if uid_to_merge == @user.uid
+
+      # Find user to merge
+      user_to_merge = User.find_by(uid: uid_to_merge)
+
+      # Move over user's rooms
+      user_to_merge.rooms.each do |room|
+        room.owner = @user
+
+        room.name = "(#{I18n.t('merged')}) #{room.name}"
+
+        room.save!
+      end
+
+      # Reload user to update merge rooms
+      user_to_merge.reload
+
+      # Delete merged user
+      user_to_merge.destroy(true)
+    rescue => e
+      logger.info "Failed to merge #{uid_to_merge} into #{@user.uid}: #{e}"
+      flash[:alert] = I18n.t("administrator.flash.merge_fail")
+    else
+      logger.info "#{current_user.uid} successfully merged #{uid_to_merge} into #{@user.uid}"
+      flash[:success] = I18n.t("administrator.flash.merge_success")
+    end
+
+    redirect_back fallback_location: admins_path
+  end
+
   # SITE SETTINGS
 
-  # POST /admins/branding
-  def branding
-    @settings.update_value("Branding Image", params[:url])
-    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
+  # POST /admins/update_settings
+  def update_settings
+    @settings.update_value(params[:setting], params[:value])
+
+    flash_message = I18n.t("administrator.flash.settings")
+
+    if params[:value] == "Default Recording Visibility"
+      flash_message += ". " + I18n.t("administrator.site_settings.recording_visibility.warning")
+    end
+
+    redirect_to admin_site_settings_path, flash: { success: flash_message }
   end
 
   # POST /admins/color
   def coloring
-    @settings.update_value("Primary Color", params[:color])
-    @settings.update_value("Primary Color Lighten", color_lighten(params[:color]))
-    @settings.update_value("Primary Color Darken", color_darken(params[:color]))
-    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
-  end
-
-  def coloring_lighten
-    @settings.update_value("Primary Color Lighten", params[:color])
-    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
-  end
-
-  def coloring_darken
-    @settings.update_value("Primary Color Darken", params[:color])
-    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
-  end
-
-  # POST /admins/room_authentication
-  def room_authentication
-    @settings.update_value("Room Authentication", params[:value])
+    @settings.update_value("Primary Color", params[:value])
+    @settings.update_value("Primary Color Lighten", color_lighten(params[:value]))
+    @settings.update_value("Primary Color Darken", color_darken(params[:value]))
     redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
   end
 
   # POST /admins/registration_method/:method
   def registration_method
-    new_method = Rails.configuration.registration_methods[params[:method].to_sym]
+    new_method = Rails.configuration.registration_methods[params[:value].to_sym]
 
     # Only allow change to Join by Invitation if user has emails enabled
     if !Rails.configuration.enable_email_verification && new_method == Rails.configuration.registration_methods[:invite]
@@ -163,19 +219,11 @@ class AdminsController < ApplicationController
     end
   end
 
-  # POST /admins/room_limit
-  def room_limit
-    @settings.update_value("Room Limit", params[:limit])
-    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
-  end
+  # POST /admins/clear_auth
+  def clear_auth
+    User.include_deleted.where(provider: @user_domain).update_all(social_uid: nil)
 
-  # POST /admins/default_recording_visibility
-  def default_recording_visibility
-    @settings.update_value("Default Recording Visibility", params[:visibility])
-    redirect_to admin_site_settings_path, flash: {
-      success: I18n.t("administrator.flash.settings") + ". " +
-               I18n.t("administrator.site_settings.recording_visibility.warning")
-    }
+    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
   end
 
   # POST /admins/clear_cache
@@ -186,44 +234,26 @@ class AdminsController < ApplicationController
     redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
   end
 
+  # POST /admins/log_level
+  def log_level
+    Rails.logger.level = params[:value].to_i
+
+    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
+  end
+
   # ROLES
 
   # GET /admins/roles
   def roles
-    @roles = Role.editable_roles(@user_domain)
-
-    if @roles.count.zero?
-      Role.create_default_roles(@user_domain)
-      @roles = Role.editable_roles(@user_domain)
-    end
-
-    @selected_role = if params[:selected_role].nil?
-                        @roles.find_by(name: 'user')
-                      else
-                        @roles.find(params[:selected_role])
-                     end
+    @roles = all_roles(params[:selected_role])
   end
 
-  # POST /admin/role
-  # This method creates a new role scope to the users provider
+  # POST /admins/role
+  # This method creates a new role scoped to the users provider
   def new_role
-    new_role_name = params[:role][:name]
+    new_role = create_role(params[:role][:name])
 
-    # Make sure that the role name isn't a duplicate or a reserved name like super_admin
-    if Role.duplicate_name(new_role_name, @user_domain)
-      flash[:alert] = I18n.t("administrator.roles.duplicate_name")
-
-      return redirect_to admin_roles_path
-    end
-
-    # Make sure the role name isn't empty
-    if new_role_name.strip.empty?
-      flash[:alert] = I18n.t("administrator.roles.empty_name")
-
-      return redirect_to admin_roles_path
-    end
-
-    new_role = Role.create_new_role(new_role_name, @user_domain)
+    return redirect_to admin_roles_path, flash: { alert: I18n.t("administrator.roles.invalid_create") } if new_role.nil?
 
     redirect_to admin_roles_path(selected_role: new_role.id)
   end
@@ -232,82 +262,16 @@ class AdminsController < ApplicationController
   # This updates the priority of a site's roles
   # Note: A lower priority role will always get used before a higher priority one
   def change_role_order
-    user_role = Role.find_by(name: "user", provider: @user_domain)
-    admin_role = Role.find_by(name: "admin", provider: @user_domain)
-
-    current_user_role = current_user.highest_priority_role
-
-    # Users aren't allowed to update the priority of the admin or user roles
-    if params[:role].include?(user_role.id.to_s) || params[:role].include?(admin_role.id.to_s)
-      flash[:alert] = I18n.t("administrator.roles.invalid_order")
-
-      return redirect_to admin_roles_path
+    unless update_priority(params[:role])
+      redirect_to admin_roles_path, flash: { alert: I18n.t("administrator.roles.invalid_order") }
     end
-
-    # Restrict users to only updating the priority for roles in their domain with a higher
-    # priority
-    params[:role].each do |id|
-      role = Role.find(id)
-      if role.priority <= current_user_role.priority || role.provider != @user_domain
-        flash[:alert] = I18n.t("administrator.roles.invalid_update")
-        return redirect_to admin_roles_path
-      end
-    end
-
-    # Update the roles priority including the user role
-    top_priority = 0
-
-    params[:role].each_with_index do |id, index|
-      new_priority = index + [current_user_role.priority, 0].max + 1
-      top_priority = new_priority
-      Role.where(id: id).update_all(priority: new_priority)
-    end
-
-    user_role.priority = top_priority + 1
-    user_role.save!
   end
 
   # POST /admin/role/:role_id
   # This method updates the permissions assigned to a role
   def update_role
     role = Role.find(params[:role_id])
-    current_user_role = current_user.highest_priority_role
-
-    # Checks that it is valid for the provider to update the role
-    if role.priority <= current_user_role.priority || role.provider != @user_domain
-      flash[:alert] = I18n.t("administrator.roles.invalid_update")
-      return redirect_to admin_roles_path(selected_role: role.id)
-    end
-
-    role_params = params.require(:role).permit(:name)
-    permission_params = params.require(:role)
-                              .permit(
-                                :can_create_rooms,
-                                :send_promoted_email,
-                                :send_demoted_email,
-                                :can_edit_site_settings,
-                                :can_edit_roles,
-                                :can_manage_users,
-                                :colour
-                              )
-
-    # Role is a default role so users can't change the name
-    role_params[:name] = role.name if Role::RESERVED_ROLE_NAMES.include?(role.name)
-
-    # Make sure if the user is updating the role name that the role name is valid
-    if role.name != role_params[:name] && !Role.duplicate_name(role_params[:name], @user_domain) &&
-       !role_params[:name].strip.empty?
-      role.name = role_params[:name]
-    elsif role.name != role_params[:name]
-      flash[:alert] = I18n.t("administrator.roles.duplicate_name")
-
-      return redirect_to admin_roles_path(selected_role: role.id)
-    end
-
-    role.update(permission_params)
-
-    role.save!
-
+    flash[:alert] = I18n.t("administrator.roles.invalid_update") unless update_permissions(role)
     redirect_to admin_roles_path(selected_role: role.id)
   end
 
@@ -325,6 +289,7 @@ class AdminsController < ApplicationController
           role.priority <= current_user.highest_priority_role.priority
       return redirect_to admin_roles_path(selected_role: role.id)
     else
+      role.role_permissions.delete_all
       role.delete
     end
 
@@ -334,34 +299,17 @@ class AdminsController < ApplicationController
   private
 
   def find_user
-    @user = User.where(uid: params[:user_uid]).includes(:roles).first
+    @user = User.find_by(uid: params[:user_uid])
   end
 
-  def find_setting
-    @settings = Setting.find_or_create_by!(provider: user_settings_provider)
+  def find_deleted_user
+    @user = User.deleted.find_by(uid: params[:user_uid])
   end
 
+  # Verifies that admin is an administrator of the user in the action
   def verify_admin_of_user
     redirect_to admins_path,
       flash: { alert: I18n.t("administrator.flash.unauthorized") } unless current_user.admin_of?(@user)
-  end
-
-  # Gets the list of users based on your configuration
-  def user_list
-    initial_list = if current_user.has_role? :super_admin
-      User.where.not(id: current_user.id)
-    else
-      User.without_role(:super_admin).where.not(id: current_user.id)
-    end
-
-    if Rails.configuration.loadbalanced_configuration
-      initial_list.where(provider: user_settings_provider)
-                  .admins_search(@search, @role)
-                  .admins_order(@order_column, @order_direction)
-    else
-      initial_list.admins_search(@search, @role)
-                  .admins_order(@order_column, @order_direction)
-    end
   end
 
   # Creates the invite if it doesn't exist, or updates the updated_at time if it does
