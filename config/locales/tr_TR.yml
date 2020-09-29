@@ -198,11 +198,11 @@ tr_TR:
       upgrade: 2.0'a nasıl yükselteceğimi göster!
       version: "Lab Akademi Webinar'ın yeni bir versiyonunu yayınladık, ancak veritabanınız uyumlu değil."
     messages:
-      blank: boş olamaz
-      too_short: çok kısa
-      invalid: geçersizdir
-      taken: daha önce alındı
-      accepted: kabul edildi
+      blank: Boş olamaz
+      too_short: Çok kısa
+      invalid: Geçersizdir
+      taken: Daha önce alındı
+      accepted: Kabul edildi
       confirmation: "eşleşmiyor% {Özelliği}"
       inclusion: Listeye dahil edilmedi
     no_provider:
@@ -239,10 +239,10 @@ tr_TR:
   header:
     all_recordings: Tüm Kayıtlar
     dropdown:
-      account_settings: organizasyon
+      account_settings: Organizasyon
       help: "Yardıma mı ihtiyacınız var?"
       home: Ev
-      settings: profil
+      settings: Profil
       signout: Oturumu Kapat
   home_room: Ev Odası
   info_update_success: Bilgi başarıyla güncellendi.
@@ -266,8 +266,8 @@ tr_TR:
     version: "Lab Akademi Webinar'ın yeni bir versiyonunu yayınladık, ancak veritabanınız uyumlu değil."
   language_default: Varsayılan (tarayıcı dili)
   ldap_error: LDAP sunucusuna bağlanılamadı. Lütfen env dosyasındaki LDAP konfigürasyonunuzu kontrol ediniz ve sunucunuzun çalıştığından emin olunuz
-  login: oturum aç
-  login_title: hesabınıza giriş yapın
+  login: Oturum aç
+  login_title: Hesabınıza giriş yapın
   mailer:
     user:
       approve:
@@ -398,7 +398,7 @@ tr_TR:
       prev: "&lsaquo; Önceki"
       next: "Sonraki &rsaquo;"
       gap: "&hellip;"
-  password: Kelime
+  password: Parola
   password_empty_notice: Şifre boş olamaz.
   password_reset_success: Şifre sıfırlandı.
   password_different_notice: Parola Onayı eşleşmiyor.
@@ -427,7 +427,7 @@ tr_TR:
       visibility: Görünürlük
       formats: Biçimleri
     visibility:
-      public: açık
+      public: Açık
       unlisted: Liste dışı
     format:
       notes: Notlar
@@ -512,9 +512,9 @@ tr_TR:
       auto: Toplantı başladığında otomatik olarak katılacaksınız.
   settings:
     account:
-      fullname: Reklam alanı
+      fullname: Tam Adınız
       language: Dil
-      provider: Sağlayıcı
+      provider: Tedarikçi
       image: Görüntü
       image_url: Profil Resmi URL'si
       roles: Kullanıcı rolleri
@@ -530,8 +530,8 @@ tr_TR:
       new: Yeni Şifre
       old: Eski Şifre
       subtitle: Şifreni değiştir
-      title: Kelime
-    title: profil
+      title: Şifre
+    title: Profil
     search: Ara
   signup:
     password_confirm: Şifre onayı
