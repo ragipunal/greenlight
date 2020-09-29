@@ -174,7 +174,7 @@ pl_PL:
       inclusion: nie znajduje się na liście
     no_provider:
       message: "Strona, na którą próbujesz wejść jest wyłączona"
-      help: "Aby skonfigurować Greenlight, skontaktuj się z administratorem"
+      help: "Aby skonfigurować Lab Akademi Webinar, skontaktuj się z administratorem"
     not_found:
       message: "Przykro mi! Strona, której szukasz, nie istnieje."
       help: "Czy to możliwe, że zostało usunięte?"

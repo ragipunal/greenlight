@@ -36,7 +36,7 @@ nb:
         enabled: Aktivert
         info: Bare tillat at autentiserte brukere kan delta i et rom
         title: Krever autentisering for rom
-        user-info: Du må logge på Greenlight for å delta i dette rommet
+        user-info: Du må logge på Lab Akademi Webinar for å delta i dette rommet
       branding:
         change: Endre bilde
         info: Endre merkevarebildet som vises øverste i venstre hjørne
@@ -66,7 +66,7 @@ nb:
       rooms:
         info: Begrenset antall rom som en bruker kan ha (inkludert 'Home' rom). Denne innstillingen gjelder ikke for administratorer.
         title: Antall rom per bruker
-      subtitle: Tilpass Greenlight
+      subtitle: Tilpass Lab Akademi Webinar
       title: Nettstedsinnstillinger
     flash:
       approved: Brukeren er godkjent.
@@ -165,9 +165,9 @@ nb:
       contact_admin: "Hvis du ikke er administrator, kan du ta kontakt med en."
       continue: Jeg vil fortsette å bruke 1.0.
       notice: >
-        Greenlight har fått en databaseoverføringsfeil. <br> Dette kan være fordi du ikke har oppdatert til Greenlight 2.0.
+        Lab Akademi Webinar har fått en databaseoverføringsfeil. <br> Dette kan være fordi du ikke har oppdatert til Lab Akademi Webinar 2.0.
       upgrade: Vis meg hvordan jeg kan oppgradere til 2.0!
-      version: "Vi har gitt ut en ny versjon av Greenlight, men databasen din er ikke kompatibel."
+      version: "Vi har gitt ut en ny versjon av Lab Akademi Webinar, men databasen din er ikke kompatibel."
     messages:
       blank: kan ikke være tom
       too_short: er for kort
@@ -178,7 +178,7 @@ nb:
       inclusion: er ikke inkludert i listen
     no_provider:
       message: Nettstedet du prøver å få tilgang til er ikke aktivert
-      help: Kontakt systemadministratoren for å konfigurere Greenlight
+      help: Kontakt systemadministratoren for å konfigurere Lab Akademi Webinar
     not_found:
       message: Beklager! Siden du leter etter eksisterer ikke.
       help: "Er det mulig at det er fjernet?"
@@ -206,7 +206,7 @@ nb:
     email: e-post
     submit: Send inn
   go_back: Gå tilbake
-  greenlight: Greenlight
+  greenlight: Lab Akademi Webinar
   header:
     all_recordings: Alle opptak
     dropdown:
@@ -230,9 +230,9 @@ nb:
   landing:
     about: "%{href} er en enkel front-end for Lab Akademi open source web-konferanseserver. Du kan lage dine egne rom for å være vertskap for økter, eller bli med andre ved å bruke en kort og praktisk lenke."
     welcome: Velkommen til Lab Akademi.
-    video: Se veiledningen vår om bruk av Greenlight
+    video: Se veiledningen vår om bruk av Lab Akademi Webinar
     upgrade: Vis meg hvordan jeg kan oppgradere til 2.0!
-    version: "Vi har gitt ut en ny versjon av Greenlight, men databasen din er ikke kompatibel."
+    version: "Vi har gitt ut en ny versjon av Lab Akademi Webinar, men databasen din er ikke kompatibel."
   language_default: Standard (nettleserspråk)
   ldap_error: "Kan ikke koble til LDAP-serveren. Kontroller LDAP-konfigurasjonen i env-filen, og kontroller at serveren din er oppe."
   login: Logg inn
@@ -244,10 +244,10 @@ nb:
         signin: "For å få tilgang til dine personlige rom, klikk på knappen nedenfor og logg deg på."
         signin_link: Logg inn
         signup:
-          info: En ny bruker har meldt seg på for å bruke Greenlight.
-          more-info: "For å gi denne brukeren tilgang til Greenlight, må du godkjenne kontoen i organisasjonsinnstillinger."
+          info: En ny bruker har meldt seg på for å bruke Lab Akademi Webinar.
+          more-info: "For å gi denne brukeren tilgang til Lab Akademi Webinar, må du godkjenne kontoen i organisasjonsinnstillinger."
           admins_link: Besøk organisasjonssiden
-          subject: Ny Greenlight-bruker melding
+          subject: Ny Lab Akademi Webinar-bruker melding
           username: "Brukeren registrerte seg med navnet %{name} og epost %{email}."
         subject: Konto godkjent
         username: "Brukernavnet ditt er %{email}."
@@ -261,9 +261,9 @@ nb:
         signup_info: "For å registrere deg ved å bruke e-posten din, klikker du på knappen nedenfor og følger trinnene."
         signup_link: Registrer
         signup:
-          info: "En bruker som ble invitert, har meldt seg på for å bruke Greenlight."
+          info: "En bruker som ble invitert, har meldt seg på for å bruke Lab Akademi Webinar."
           admins_link: Besøk organisasjonssiden
-          subject: Ny Greenlight-brukermelding
+          subject: Ny Lab Akademi Webinar-brukermelding
           username: "Brukeren registrerte seg med navnet %{name} og epost %{email}."
         subject: Invitasjon til å bli med på Lab Akademi
         username: "Brukernavnet ditt er %{email}."

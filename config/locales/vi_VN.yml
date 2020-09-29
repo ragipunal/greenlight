@@ -66,7 +66,7 @@ vi_VN:
       rooms:
         info:
         title:
-      subtitle: Thiết lập Greenlight
+      subtitle: Thiết lập Lab Akademi Webinar
       title: Cài đặt trang
     flash:
       approved:
@@ -226,7 +226,7 @@ vi_VN:
   landing:
     about: "%{href} là một giao diện cơ bản dành cho máy chủ hội nghị trực tuyến mã nguồn mở Lab Akademi của bạn. Bạn có thể tạo những phòng riêng của mình để tổ chức các phiên hoặc tham gia với những người khác bằng cách sử dụng một liên kết ngắn và thuận tiện."
     welcome: Chào mừng đến với Lab Akademi.
-    video: Xem thêm hướng dẫn sử dụng Greenlight
+    video: Xem thêm hướng dẫn sử dụng Lab Akademi Webinar
     upgrade: Hãy chỉ cho tôi cách nâng cấp lên 2.0!
     version: "Chúng tôi đã phát hành phiên bản mới của Lab Akademi, nhưng cơ sở dữ liệu của bạn không tương thích."
   language_default: Mặc định (ngôn ngữ từ trình duyệt)

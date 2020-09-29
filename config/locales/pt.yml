@@ -163,7 +163,7 @@ pt:
       notice: >
         Lab Akademi encontrou um erro de migração no banco de dados.<br> Isso pode ser porque você não atualizou para o Lab Akademi 2.0.
       upgrade: Mostre-me como atualizar para 2.0!
-      version: "Lançamos uma nova versão do Greenlight, entretanto sua base de dados é incompatível."
+      version: "Lançamos uma nova versão do Lab Akademi Webinar, entretanto sua base de dados é incompatível."
     messages:
       blank:
       too_short:
